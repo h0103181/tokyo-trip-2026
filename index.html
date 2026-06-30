@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>2026 東京親子動漫自由行攻略手冊</title>
+  <meta name="description" content="東京親子動漫自由行攻略手冊，專為Winnie一家量身打造。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --card-hover: #2d3748;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      
+      /* Color coding by district */
+      --ikebukuro: #c084fc;      /* Purple */
+      --tokyo-akiba: #fb923c;   /* Orange */
+      --kawagoe: #4ade80;       /* Green */
+      --odaiba: #38bdf8;        /* Blue */
+      --primary: #818cf8;       /* Lavender/Indigo */
+      
+      --accent: #f43f5e;
+      --success: #10b981;
+      --border: #334155;
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+      --font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      padding-bottom: 80px;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+      padding: 35px 20px 25px;
+      text-align: center;
+      border-bottom: 2px solid var(--border);
+      position: relative;
+    }
+
+    .header-badge {
+      background: var(--accent);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+      background: linear-gradient(to right, #f472b6, #c084fc, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      max-width: 450px;
+      margin: 10px auto 0;
+    }
+
+    .meta-tag {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 6px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-align: center;
+    }
+
+    .action-btn-container {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+
+    .action-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s;
+    }
+
+    .action-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+
+    /* Bottom Navigation Bar */
+    .tab-bar {
+      display: flex;
+      justify-content: space-around;
+      background-color: var(--card-bg);
+      border-top: 1px solid var(--border);
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 6px 0;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .tab-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      font-family: var(--font-family);
+      cursor: pointer;
+      width: 20%;
+      transition: color 0.2s;
+      outline: none;
+      font-weight: 600;
+    }
+
+    .tab-item svg {
+      width: 22px;
+      height: 22px;
+      margin-bottom: 3px;
+      fill: currentColor;
+    }
+
+    .tab-item.active {
+      color: var(--primary);
+    }
+
+    .tab-content {
+      display: none;
+      animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section Typography */
+    h2 {
+      font-size: 1.4rem;
+      margin: 15px 0 10px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      margin: 20px 0 10px;
+      color: var(--text-main);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Spot Cards */
+    .spot-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .spot-card.ikebukuro-border { border-top: 5px solid var(--ikebukuro); }
+    .spot-card.tokyo-akiba-border { border-top: 5px solid var(--tokyo-akiba); }
+    .spot-card.kawagoe-border { border-top: 5px solid var(--kawagoe); }
+    .spot-card.odaiba-border { border-top: 5px solid var(--odaiba); }
+
+    .spot-image-container {
+      width: 100%;
+      height: 180px;
+      position: relative;
+      background-color: #0b0f19;
+      overflow: hidden;
+    }
+
+    .spot-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .spot-badges {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      z-index: 2;
+    }
+
+    .badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .badge-musteat { background-color: var(--accent); }
+    .badge-mustbuy { background-color: #eab308; color: #000; }
+    .badge-mustgo { background-color: var(--primary); }
+    .badge-alt { background-color: #64748b; }
+
+    .spot-info-container {
+      padding: 16px;
+    }
+
+    .spot-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .spot-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .spot-rating {
+      color: #eab308;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .spot-quick-stats {
+      display: flex;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      background: rgba(0, 0, 0, 0.15);
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .spot-description {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      margin-bottom: 15px;
+    }
+
+    /* Ching Man Sha Details Table */
+    .spot-details-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      background: rgba(15, 23, 42, 0.3);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .spot-details-table tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .spot-details-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .spot-details-table td {
+      padding: 8px 12px;
+    }
+
+    .spot-details-table td.label-col {
+      width: 80px;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .spot-details-table td.val-col {
+      color: var(--text-main);
+    }
+
+    .smart-tip-box {
+      background: rgba(167, 139, 250, 0.08);
+      border: 1px dashed rgba(167, 139, 250, 0.3);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-top: 12px;
+      font-size: 0.82rem;
+    }
+
+    .smart-tip-box strong {
+      color: #c084fc;
+    }
+
+    /* Expandable Accordions */
+    .details-toggle {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-weight: 600;
+      width: 100%;
+    }
+
+    .details-toggle svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      transition: transform 0.2s;
+    }
+
+    .details-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .details-content.open {
+      max-height: 1200px;
+    }
+
+    .details-inner {
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      background-color: rgba(15, 23, 42, 0.3);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .details-toggle.active svg {
+      transform: rotate(180deg);
+    }
+
+    /* Interactive Checklist */
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .checklist-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .checklist-item input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    .checkbox-custom {
+      min-width: 20px;
+      min-height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      position: relative;
+      margin-top: 2px;
+      transition: background-color 0.2s, border-color 0.2s;
+      background-color: #0f172a;
+    }
+
+    .checklist-item input[type="checkbox"]:checked ~ .checkbox-custom {
+      background-color: var(--success);
+      border-color: var(--success);
+    }
+
+    .checkbox-custom::after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 6px;
+      top: 2px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .checklist-item input[type="checkbox"]:checked ~ .checkbox-custom::after {
+      display: block;
+    }
+
+    .checklist-label {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+
+    .checklist-item input[type="checkbox"]:checked ~ .checklist-label {
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .checklist-sublabel {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 4px;
+      text-decoration: none !important;
+    }
+
+    .alert {
+      background: rgba(244, 63, 94, 0.1);
+      border: 1px solid rgba(244, 63, 94, 0.2);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 15px;
+      color: #fda4af;
+      font-size: 0.85rem;
+    }
+
+    .alert.tip {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      color: #a7f3d0;
+    }
+
+    /* Simplified Maps */
+    .map-box {
+      background-color: #0b0f19;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      margin: 15px 0;
+      text-align: center;
+    }
+
+    .map-svg {
+      width: 100%;
+      height: auto;
+      max-width: 450px;
+    }
+
+    /* Print styling */
+    @media print {
+      body {
+        background-color: white;
+        color: black;
+        padding-bottom: 0;
+      }
+      :root {
+        --bg-color: #ffffff;
+        --card-bg: #f8fafc;
+        --text-main: #000000;
+        --text-muted: #475569;
+        --border: #cbd5e1;
+        --shadow: none;
+      }
+      .tab-bar, .action-btn-container, .details-toggle {
+        display: none !important;
+      }
+      .tab-content {
+        display: block !important;
+        page-break-after: always;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .details-content {
+        max-height: none !important;
+        display: block !important;
+        overflow: visible !important;
+      }
+      .details-inner {
+        border: 1px solid #cbd5e1 !important;
+        background-color: #f1f5f9 !important;
+      }
+      header {
+        background: none;
+        color: black;
+        border-bottom: 2px solid black;
+        padding: 20px 0;
+      }
+      header h1 {
+        -webkit-text-fill-color: initial;
+        color: black;
+      }
+      .spot-card {
+        border: 1px solid #cbd5e1;
+        page-break-inside: avoid;
+      }
+      .checklist-label {
+        color: black !important;
+        text-decoration: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Print/PDF Button -->
+  <header>
+    <div class="header-badge">港式旅遊手冊</div>
+    <h1>東京親子動漫玩樂手冊</h1>
+    <p>Winnie 一家四口專用 • 6天5夜全攻略 (7/3 - 7/8)</p>
+    <div class="meta-grid">
+      <div class="meta-tag">6天5夜</div>
+      <div class="meta-tag">2大2小 (8及12歲)</div>
+      <div class="meta-tag">池袋/川越/台場</div>
+    </div>
+    <div class="action-btn-container">
+      <button class="action-btn" onclick="window.print()">
+        <svg style="width:14px;height:14px;" viewBox="0 0 24 24"><path fill="currentColor" d="M18,3H6V7H18M19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12M16,19H8V14H16M19,8H5A3,3 0 0,0 2,11V17H6V21H18V17H22V11A3,3 0 0,0 19,8Z"/></svg>
+        PDF / 列印
+      </button>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- ==================== TAB 1: ITINERARY ==================== -->
+    <div id="itinerary" class="tab-content active">
+      <h2>🗓️ 每日詳細行程</h2>
+      
+      <!-- Day 1 -->
+      <h3>7月3日 (五) ➔ 抵達東京·羽田入住</h3>
+      <div class="timeline">
+        <div class="card primary-border" style="padding: 12px; margin-bottom: 10px;">
+          <div class="timeline-time" style="font-weight:700; color:var(--primary);">21:35 ✈️</div>
+          <div class="timeline-title" style="font-weight:700;">抵達羽田機場第3航廈 (CX542)</div>
+          <p style="font-size:0.85rem; margin-top:4px; margin-bottom:8px;">出關、領取行李約 45–90 分鐘。通關步驟：</p>
+          <ol style="font-size:0.82rem; color:var(--text-muted); padding-left:18px; margin-bottom:8px;">
+            <li>在機上提前完成 Visit Japan Web 入境填報（掃描二維碼）</li>
+            <li>入境審查：出示護照及 QR Code，預計等候 15-30 分鐘</li>
+            <li>領取行李 → 通過海關申報（選擇綠色通道）</li>
+            <li>出閘後前往 JR 東日本旅行服務中心購買 Welcome Suica (免押金)</li>
+          </ol>
+          <div class="alert" style="margin-top:8px;">
+            ⚠️ <strong>Child Suica 重要提示：</strong>8歲女兒必須在此櫃台出示護照辦理 Child Suica（半價乘車卡）。6歲以上才需購買，嬰兒免費。
+          </div>
+        </div>
+
+        <!-- Hotel Card -->
+        <div class="spot-card" style="border-left: 3px solid var(--primary);">
+          <div class="spot-image-container" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;">
+            <div style="font-size:2.5rem;">🏨</div>
+            <div style="color:var(--text-muted); font-size:0.85rem; text-align:center;">Hotel JAL City<br>Haneda Tokyo<br>West Wing</div>
+          </div>
+          <div class="spot-info-container">
+            <div class="spot-title-row">
+              <div class="spot-title">Hotel JAL City Haneda Tokyo West Wing</div>
+              <div class="spot-rating">★★★★☆</div>
+            </div>
+            <div class="spot-quick-stats">
+              <span class="stat-item">🚍 免費接駁巴士：每30分鐘一班</span>
+              <span class="stat-item">⏱️ 至機場：步行8分 / 免費巴士</span>
+            </div>
+            <p class="spot-description">JAL 旗下精品酒店，毗鄰羽田機場。以「空港日式旅館」為主題，融合現代設計與日式傳統美學。晚抵東京後不用轉車，步行或乘免費接駁直達，適合帶著孩子疲憊入住。</p>
+            <table class="spot-details-table">
+              <tr>
+                <td class="label-col">接駁班次</td>
+                <td class="val-col">23:05 / 23:55（最後班次）在 T3 出閘後跟指示牌到達巴士站</td>
+              </tr>
+              <tr>
+                <td class="label-col">酒店地址</td>
+                <td class="val-col">東京都大田區羽田空港3-5-10 / 03-5756-8800</td>
+              </tr>
+              <tr>
+                <td class="label-col">退房時間</td>
+                <td class="val-col">12:00 (7/4 早上退房搬往池袋酒店)</td>
+              </tr>
+            </table>
+            <div class="smart-tip-box">
+              <strong>💡 旅遊貼士：</strong>酒店一樓有 7-Eleven 便利店，晚上可購買日本限定零食和第二天早餐。建議第二天早上 07:00 前往退房並寄存行李，騰出手輕鬆享用早餐。
+            </div>
+          </div>
+        </div>
+
+        <div class="card primary-border" style="padding: 12px; margin-bottom: 10px;">
+          <div class="timeline-time" style="font-weight:700; color:var(--primary);">23:05 / 23:55 🚍</div>
+          <div class="timeline-title" style="font-weight:700;">搭乘酒店免費 Shuttle 前往 Hotel JAL City</div>
+          <p style="font-size:0.85rem; margin-top:4px; margin-bottom:0;">在 T3 出閘口附近跟隨「Hotel JAL City」指示牌找到免費接駁巴士站。車程約 10-15 分鐘。若錯過末班車可在的士排隊處叫車，費用約 ¥1,000。入住後好好休息，迎接明天的池袋冒險！</p>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <h3>7月4日 (六) ➔ 池袋動漫與溫泉日</h3>
+      <div class="timeline">
+        <!-- Spot 1: Animate -->
+        <div class="spot-card ikebukuro-border">
+          <div class="spot-image-container">
+            <div class="spot-badges">
+              <span class="badge badge-mustgo">必到聖地</span>
+            </div>
+            <div style="background: linear-gradient(135deg, #2e1065 0%, #1e1b4b 50%, #0f172a 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:6px;">
+              <div style="font-size:2.2rem;">🎌</div>
+              <div style="color:#c084fc; font-size:0.85rem; font-weight:700; text-align:center; line-height:1.3;">Animate<br>池袋旗艦店</div>
+              <div style="color:#94a3b8; font-size:0.7rem;">B2F～10F</div>
+            </div>
+          </div>
+          <div class="spot-info-container">
+            <div class="spot-title-row">
+              <div class="spot-title">Animate 池袋旗艦店</div>
+              <div class="spot-rating">★★★★★</div>
+            </div>
+            <div class="spot-quick-stats">
+              <span class="stat-item">⏱️ 建議：1.5小時</span>
+              <span class="stat-item">🚶 步程：池袋站東口步行5-8分鐘</span>
+            </div>
+            <p class="spot-description">全球最大型的動漫周邊商品旗艦店！整棟大樓開滿了各式動漫商品、展覽和聯名專櫃。兒子最心儀的鬼滅之刃手辦和限量周邊在這裡非常齊全。</p>
+            <table class="spot-details-table">
+              <tr>
+                <td class="label-col">營業時間</td>
+                <td class="val-col">10:00–21:00 (週末/假期) / 11:00–21:00 (平日)</td>
+              </tr>
+              <tr>
+                <td class="label-col">地址/電話</td>
+                <td class="val-col">東京都豊島區東池袋1-20-7 / 03-3988-1351</td>
+              </tr>
+            </table>
+            <div class="smart-tip-box">
+              <strong>💡 旅遊貼士：</strong>7月人潮洶湧，冷氣雖足，但多個樓層人頭攢動。建議與孩子約定好集合時間與地點，避免走失；二樓的鬼滅之刃專櫃最熱門。
+            </div>
+          </div>
+        </div>
+
+        <!-- Spot 2: Sanrio Cafe -->
+        <div class="spot-card ikebukuro-border">
+          <div class="spot-image-container">
+            <div class="spot-badges">
+              <span class="badge badge-musteat">必食打卡</span>
+            </div>
+            <img src="assets/sanrio_cafe.png" class="spot-img" alt="池袋 Sanrio Cafe">
+          </div>
+          <div class="spot-info-container">
+            <div class="spot-title-row">
+              <div class="spot-title">Sanrio Cafe Ikebukuro</div>
+              <div class="spot-rating">★★★★☆</div>
+            </div>
+            <div class="spot-quick-stats">
+              <span class="stat-item">⏱️ 建議：1小時</span>
+              <span class="stat-item">🚶 步程：池袋 Sunshine City 噴水廣場旁</span>
+            </div>
+            <p class="spot-description">專為 Sanrio 粉絲設計的夢幻咖啡廳。提供玉桂狗 (Cinnamoroll) 主題拿鐵、漢堡及布丁。女兒看見一定會尖叫的網紅打卡位！</p>
+            <table class="spot-details-table">
+              <tr>
+                <td class="label-col">營業時間</td>
+                <td class="val-col">10:00–20:00 (L.O. 19:30)</td>
+              </tr>
+              <tr>
+                <td class="label-col">消費預算</td>
+                <td class="val-col">人均約 ¥1,000–¥2,000</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Alternatives for Day 2 -->
+        <button class="details-toggle" onclick="toggleDetails('d2-alts')">
+          <span>💜 同區順路遊及美食備選 (池袋區)</span>
+          <svg viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+        </button>
+        <div id="d2-alts" class="details-content">
+          <div class="details-inner">
+            <p style="margin-bottom: 8px;"><strong>1. 陽光水族館 (Sunshine Aquarium) ★★★★☆</strong><br>位於 Sunshine City 頂樓，以「天空綠洲」為概念，可以看見企鵝在您頭頂的透明水槽中游動。門票：成人 ¥2,500，中小學生 ¥1,300。</p>
+            <p style="margin-bottom: 8px;"><strong>2. 陽光60展望台 (TENBOU-PARK) ★★★★☆</strong><br>全新裝修的室內草地展望台，可以俯瞰東京全景，天氣好時還能遠眺富士山。非常適合帶孩子進去一邊喝飲料一邊休息。</p>
+            <p style="margin-bottom: 0;"><strong>3. 無敵家拉麵 (Mutekiya) ★★★★★</strong><br>池袋最出名的濃郁豚骨拉麵店。因為不設分店，長期大排長龍。建議在下午 3-4 點非用餐高峰時間前往，避開排隊人潮。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <h3>7月5日 (日) ➔ 彌撒 + 寶可夢與秋葉原</h3>
+      <div class="timeline">
+        <!-- Sunday Mass Info Card -->
+        <div class="card tokyo-akiba-border" style="margin-bottom: 20px;">
+          <h4 style="color:var(--tokyo-akiba); margin-bottom:8px;">⛪ 星期日主日彌撒指引</h4>
+          <p style="font-size:0.85rem; margin-bottom:10px;">為方便一家人參與彌撒，我們推薦以下兩家天主教堂：</p>
+          <div style="background:rgba(0,0,0,0.2); padding:10px; border-radius:8px; font-size:0.8rem; margin-bottom:8px;">
+            <strong>選項①：豐島天主堂 (St. Patrick's) ➔ 距離最近</strong><br>
+            • 彌撒時間：日語 09:30 / 英語 12:00 (推薦正午英文彌撒)<br>
+            • 交通：從池袋酒店步行約 15 分鐘，或乘的士約 5 分鐘。
+          </div>
+          <div style="background:rgba(0,0,0,0.2); padding:10px; border-radius:8px; font-size:0.8rem;">
+            <strong>選項②：聖伊納爵天主堂 (四谷) ➔ 國際化大教堂</strong><br>
+            • 彌撒時間：日語 10:00 / 英語 12:00 / 中文 13:30 (每週時間可能有調整)<br>
+            • 交通：池袋地鐵丸之內線直達「四谷站」(約15分鐘)，教堂就在出口旁。
+          </div>
+        </div>
+
+        <!-- Spot 3: Pokemon Center DX -->
+        <div class="spot-card tokyo-akiba-border">
+          <div class="spot-image-container">
+            <div class="spot-badges">
+              <span class="badge badge-mustgo">全日焦點</span>
+            </div>
+            <img src="assets/pokemon_center_dx.png" class="spot-img" alt="寶可夢中心 DX 日本橋">
+          </div>
+          <div class="spot-info-container">
+            <div class="spot-title-row">
+              <div class="spot-title">Pokémon Center TOKYO DX</div>
+              <div class="spot-rating">★★★★★</div>
+            </div>
+            <div class="spot-quick-stats">
+              <span class="stat-item">⏱️ 建議：1.5-2小時</span>
+              <span class="stat-item">🚶 步程：日本橋站步行5分鐘 / 東京站八重洲口步行8分鐘</span>
+            </div>
+            <p class="spot-description">位於高島屋東館。擁有全日本最震撼的巨型寶可夢模型，包括卡比獸與皮卡丘。兒子買卡牌、公仔的終極聖地！</p>
+            <table class="spot-details-table">
+              <tr>
+                <td class="label-col">營業時間</td>
+                <td class="val-col">10:30–21:00</td>
+              </tr>
+              <tr>
+                <td class="label-col">地址/電話</td>
+                <td class="val-col">東京都中央區日本橋2-11-2 高島屋S.C.東館5F</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Spot 4: Akihabara -->
+        <div class="spot-card tokyo-akiba-border">
+          <div class="spot-image-container">
+            <div class="spot-badges">
+              <span class="badge badge-mustgo">動漫天堂</span>
+            </div>
+            <img src="assets/akihabara_street.png" class="spot-img" alt="秋葉原動漫街">
+          </div>
+          <div class="spot-info-container">
+            <div class="spot-title-row">
+              <div class="spot-title">秋葉原動漫街</div>
+              <div class="spot-rating">★★★★★</div>
+            </div>
+            <div class="spot-quick-stats">
+              <span class="stat-item">⏱️ 建議：2小時</span>
+              <span class="stat-item">🚆 交通：東京站搭JR山手線直達 (4分鐘)</span>
+            </div>
+            <p class="spot-description">動漫文化的心臟地帶。出站即可看見 **Radio Kaikan (收音機會館)**，整棟樓開滿了手辦、卡牌和玩具專賣店。兒子一定能找到他最愛的鬼滅之刃限量周邊。</p>
+          </div>
+        </div>
+
+        <!-- Alternatives for Day 3 -->
+        <button class="details-toggle" onclick="toggleDetails('d3-alts')">
+          <span>🧡 同區順路遊及美食備選 (東京站/秋葉原)</span>
+          <svg viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+        </button>
+        <div id="d3-alts" class="details-content">
+          <div class="details-inner">
+            <p style="margin-bottom: 8px;"><strong>1. 神田明神 (Kanda Myojin Shrine) ★★★★☆</strong><br>秋葉原附近的千年歷史神社。與許多動漫（如鬼滅之刃、LoveLive）有聯名合作，連神社的繪馬和御守都是動漫造型，非常特別。</p>
+            <p style="margin-bottom: 8px;"><strong>2. Yodobashi Akiba (友都八喜巨型電器城) ★★★★★</strong><br>位於秋葉原站東口，擁有巨大的扭蛋玩具區和兒童玩具樓層。累了還可以去 8 樓的美食街用餐，有各式咖哩和拉麵，非常適合家庭。</p>
+            <p style="margin-bottom: 0;"><strong>3. 六厘舍沾麵 (Rokurinsha) ★★★★☆</strong><br>位於東京站地下的「拉麵街」，以極其濃郁的魚介豚骨沾麵著稱，深受香港遊客喜愛。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <h3>7月6日 (一) ➔ 川越小江戶古街日</h3>
+      <div class="timeline">
+        <!-- Spot 5: Kawagoe Clock Tower -->
+        <div class="spot-card kawagoe-border">
+          <div class="spot-image-container">
+            <div class="spot-badges">
+              <span class="badge badge-mustgo">必遊景點</span>
+            </div>
+            <img src="assets/kawagoe_clock_tower.png" class="spot-img" alt="川越時之鐘">
+          </div>
+          <div class="spot-info-container">
+            <div class="spot-title-row">
+              <div class="spot-title">川越老街與時之鐘</div>
+              <div class="spot-rating">★★★★★</div>
+            </div>
+            <div class="spot-quick-stats">
+              <span class="stat-item">⏱️ 建議：半日遊 (4小時)</span>
+              <span class="stat-item">🚆 交通：池袋乘東武東上線直達川越 (35分)</span>
+            </div>
+            <p class="spot-description">被稱為「小江戶」的歷史街區。保留了大量日本江戶時代的黑色木造倉庫建築，地標「時之鐘」依然每日鳴鐘。非常適合全家人換上輕便的**浴衣 (Yukata)** 散步拍照。</p>
+            <div class="smart-tip-box">
+              <strong>🎐 7月限定！川越冰川神社「緣結風鈴祭」：</strong><br>
+              每年 7 月初開展，神社內會懸掛超過 2,000 個五彩繽紛的手工玻璃風鈴。微風吹過鈴聲清脆，晚上還會有點燈儀式，宛如動漫鬼滅之刃中的夏祭場景，千萬不要錯過！
+            </div>
+          </div>
+        </div>
+
+        <!-- Alternatives for Day 4 -->
+        <button class="details-toggle" onclick="toggleDetails('d4-alts')">
+          <span>💚 同區順路遊及美食備選 (川越區)</span>
+          <svg viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+        </button>
+        <div id="d4-alts" class="details-content">
+          <div class="details-inner">
+            <p style="margin-bottom: 8px;"><strong>1. 喜多院 (Kitain Temple) ★★★★☆</strong><br>保留了江戶城部分遺跡的古老寺廟，庭院內有著名的五百羅漢雕塑。春天櫻花和秋天楓葉很有名，夏日則十分幽靜。</p>
+            <p style="margin-bottom: 8px;"><strong>2. 川越熊野神社 (Kumano Shrine) ★★★★☆</strong><br>以「開運、洗錢」聞名的神社。院內設有一條碎石健康步道（赤腳走），還有獨特的八咫烏神籤，孩子們會覺得很好玩。</p>
+            <p style="margin-bottom: 0;"><strong>3. 小川菊鰻魚飯 (Ogakiku) ★★★★★</strong><br>川越擁有二百年歷史的鰻魚飯老店，用古法炭火慢烤，入口即化。因為太受歡迎，建議一到川越就先去拿號碼牌。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <h3>7月7日 (二) ➔ 水族館與台場夜景</h3>
+      <div class="timeline">
+        <!-- Spot 6: Maxell Aqua Park -->
+        <div class="spot-card odaiba-border">
+          <div class="spot-image-container">
+            <div class="spot-badges">
+              <span class="badge badge-mustgo">必遊景點</span>
+            </div>
+            <img src="assets/aqua_park.png" class="spot-img" alt="Maxell Aqua Park 品川水族館">
+          </div>
+          <div class="spot-info-container">
+            <div class="spot-title-row">
+              <div class="spot-title">Maxell Aqua Park 品川水族館</div>
+              <div class="spot-rating">★★★★★</div>
+            </div>
+            <div class="spot-quick-stats">
+              <span class="stat-item">⏱️ 建議：2小時</span>
+              <span class="stat-item">🚆 交通：品川站高輪口步行2分鐘</span>
+            </div>
+            <p class="spot-description">結合現代聲光投影技術的超人氣市內水族館。最矚目的是伴隨音樂、水幕與炫彩燈光的 **海豚表演秀 (Dolphin Show)**。全館位於室內，冷氣開放，非常適合炎熱的 7 月天。</p>
+            <table class="spot-details-table">
+              <tr>
+                <td class="label-col">門票價格</td>
+                <td class="val-col">成人 ¥2,500 / 中小學生 ¥1,300 / 兒童 (4歲以上) ¥800</td>
+              </tr>
+              <tr>
+                <td class="label-col">溫馨提示</td>
+                <td class="val-col">海豚秀前排座位會被淋濕，建議購買雨衣 (¥100) 或坐後排。</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Spot 7: Odaiba Gundam -->
+        <div class="spot-card odaiba-border">
+          <div class="spot-image-container">
+            <div class="spot-badges">
+              <span class="badge badge-mustgo">必到打卡</span>
+            </div>
+            <img src="assets/odaiba_gundam.png" class="spot-img" alt="台場獨角獸鋼彈">
+          </div>
+          <div class="spot-info-container">
+            <div class="spot-title-row">
+              <div class="spot-title">台場 DiverCity 獨角獸鋼彈</div>
+              <div class="spot-rating">★★★★★</div>
+            </div>
+            <div class="spot-quick-stats">
+              <span class="stat-item">⏱️ 建議：1.5小時</span>
+              <span class="stat-item">🚆 交通：臨海線「東京電訊港站」步行5分鐘</span>
+            </div>
+            <p class="spot-description">位於 DiverCity 商場廣場，1:1 等身比例的 Unicorn Gundam。每日定時會有「毀滅模式」變身演出（晚上配合牆面投影更震撼）。商場內有 Gundam Base 旗艦店和各種動漫品牌。</p>
+            <div class="smart-tip-box">
+              <strong>💡 鋼彈燈光秀時間表：</strong><br>
+              • 白天變身：11:00, 13:00, 15:00, 17:00 (僅頭部變形)<br>
+              • 晚上變身 (配合大螢幕)：19:00 - 21:30 (每30分鐘一場，有不同影片主題)
+            </div>
+          </div>
+        </div>
+
+        <!-- Alternatives for Day 5 -->
+        <button class="details-toggle" onclick="toggleDetails('d5-alts')">
+          <span>💙 同區順路遊及美食備選 (台場區)</span>
+          <svg viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+        </button>
+        <div id="d5-alts" class="details-content">
+          <div class="details-inner">
+            <p style="margin-bottom: 8px;"><strong>1. 台場一丁目商店街 (DECKS Tokyo Beach) ★★★★☆</strong><br>位於 DECKS 商場 4 樓，完全重現了日本昭和時代 (上世紀 60-70 年代) 的復古街景。有古早味柑仔店、投幣式復古遊戲機和鬼屋，小孩子會覺得非常新奇。</p>
+            <p style="margin-bottom: 8px;"><strong>2. 樂高探索中心 (LEGOLAND Discovery Center) ★★★★☆</strong><br>室內樂高積木主題樂園，有 4D 電影院、樂高拼砌區和射擊遊戲。如果遇到下雨天，這是一個完美的備用景點。</p>
+            <p style="margin-bottom: 0;"><strong>3. Bills 鬆餅 (Bills Odaiba) ★★★★★</strong><br>位於 DECKS 3 樓，被譽為「世界第一的早餐鬆餅」。臨窗座位可以直面 Rainbow Bridge (彩虹大橋)，景色絕美，推薦招牌蜂蜜香蕉奶油鬆餅。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 6 -->
+      <h3>7月8日 (三) ➔ 補貨與回港</h3>
+      <div class="timeline">
+        <div class="card primary-border" style="padding: 12px; margin-bottom: 10px;">
+          <div class="timeline-time" style="font-weight:700; color:var(--primary);">09:00 - 11:30</div>
+          <div class="timeline-title" style="font-weight:700;">🛒 Costco 補貨 或 酒店周邊超市最後採購</div>
+          <p style="font-size:0.85rem; margin-top:4px; margin-bottom:0;">若計劃前往川崎 Costco 買零食/保健品，請提早叫的士前往。若想行程輕鬆，可留在酒店 (Haneda) 周邊的 Life 超市或藥妝店作最後衝刺。</p>
+        </div>
+        <div class="card primary-border" style="padding: 12px; margin-bottom: 10px;">
+          <div class="timeline-time" style="font-weight:700; color:var(--primary);">13:30</div>
+          <div class="timeline-title" style="font-weight:700;">✈️ 抵達羽田機場 T3 (航班 CX549 16:20)</div>
+          <p style="font-size:0.85rem; margin-top:4px; margin-bottom:0;">搭乘酒店接駁巴士或的士 (約 10 分鐘) 直達航廈。辦理行李託運後，在機場免稅店買伴手禮（白色戀人、Royce 朱古力等），乘機回港。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 2: CHECKLISTS ==================== -->
+    <div id="checklists" class="tab-content">
+      <h2>🧳 行前與每日清單</h2>
+      <p>點選打勾，狀態會自動記錄在您的手機中 (刷新或關網頁也不會消失)！</p>
+
+      <div class="card primary-border">
+        <h3>✈️ 出發前必備物品</h3>
+        <div class="checklist-item" onclick="toggleCheckbox('c-passport')">
+          <input type="checkbox" id="c-passport">
+          <div class="checkbox-custom"></div>
+          <span class="checklist-label">全員護照 (確認有效期 > 6個月)<span class="checklist-sublabel">貴重物品</span></span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheckbox('c-visitjapan')">
+          <input type="checkbox" id="c-visitjapan">
+          <div class="checkbox-custom"></div>
+          <span class="checklist-label">Visit Japan Web 入境 QR Code<span class="checklist-sublabel">全家人於出發前在網上填妥</span></span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheckbox('c-esim')">
+          <input type="checkbox" id="c-esim">
+          <div class="checkbox-custom"></div>
+          <span class="checklist-label">日本 eSIM / 上網卡<span class="checklist-sublabel">已設定並測試</span></span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheckbox('c-cash')">
+          <input type="checkbox" id="c-cash">
+          <div class="checkbox-custom"></div>
+          <span class="checklist-label">日元現金 & 提款卡 (開通海外提款功能)<span class="checklist-sublabel">備用現金</span></span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheckbox('c-cc')">
+          <input type="checkbox" id="c-cc">
+          <div class="checkbox-custom"></div>
+          <span class="checklist-label">HSBC Red Visa 及 RBC Mastercard<span class="checklist-sublabel">主要刷 HSBC，手續費較省</span></span>
+        </div>
+      </div>
+
+      <div class="card accent-border">
+        <h3>🌡️ 7月防暑必備 (非常重要)</h3>
+        <div class="checklist-item" onclick="toggleCheckbox('c-fan')">
+          <input type="checkbox" id="c-fan">
+          <div class="checkbox-custom"></div>
+          <span class="checklist-label">便攜手持小風扇 (每人一部)<span class="checklist-sublabel">帶USB充電線</span></span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheckbox('c-umbrella')">
+          <input type="checkbox" id="c-umbrella">
+          <div class="checkbox-custom"></div>
+          <span class="checklist-label">太陽帽 / 防曬傘 / 太陽眼鏡<span class="checklist-sublabel">東京7月紫外線極強</span></span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheckbox('c-bottle')">
+          <input type="checkbox" id="c-bottle">
+          <div class="checkbox-custom"></div>
+          <span class="checklist-label">輕便保溫水樽<span class="checklist-sublabel">隨時在販賣機或便利店補水</span></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🛍️ 媽媽的購物清單 (藥妝與鞋)</h3>
+        <div class="checklist-item" onclick="toggleCheckbox('c-ozio')">
+          <input type="checkbox" id="c-ozio">
+          <div class="checkbox-custom"></div>
+          <span class="checklist-label">OZIO 蜂王乳凝露 (蜂王乳QQ潤澤凝露)<span class="checklist-sublabel">松本清、Sundrug 藥妝店可買到</span></span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheckbox('c-shoes')">
+          <input type="checkbox" id="c-shoes">
+          <div class="checkbox-custom"></div>
+          <span class="checklist-label">全家人運動鞋 (ABC-MART Grand Stage)<span class="checklist-sublabel">池袋東口有旗艦店，買完可以直接穿</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 3: TRANSIT ==================== -->
+    <div id="transit" class="tab-content">
+      <h2>🚆 交通指南</h2>
+      
+      <div class="card primary-border">
+        <h3>💳 Welcome Suica 購買與使用</h3>
+        <p><strong>外國遊客專用卡特點：</strong></p>
+        <p>1. **無押金**：不需要扣除 ¥500，餘額可全數用來乘車或在超商消費。</p>
+        <p>2. **28天有效期**：過期後卡內**餘額不能退還**，請在最後一天於機場免稅店將餘額刷完。</p>
+        <p>3. **👧 8歲女兒辦 Child Suica (半價卡)**：乘車和巴士均自動半價。必須在羽田機場 JR 東日本旅行服務中心出示護照以確認年齡購買。</p>
+      </div>
+
+      <div class="card">
+        <h3>🧳 攜帶 3 大行李乘車與的士叫車政策</h3>
+        <p><strong>1. JR山手線及普通地鐵行李政策：</strong><br>
+        無須像新幹線一樣預約行李位，所有大行李均可免費攜帶上車。但請**務必避開平日通勤高峰時間 (07:30–09:00)**，否則地鐵內擁擠，拖行李會極為不便。</p>
+        <p><strong>2. 搬酒店日的最佳安排 (7/4 早上)：</strong><br>
+        羽田機場 JAL City ➔ 池袋 Super Hotel。由於有 3 件大行李和 2 個孩子，**強烈建議直接搭乘的士 (或叫 Uber Premier Van)**。車程約 40 分鐘，費用約 ¥10,000–¥12,000，能省去轉車、拖行李上下樓梯的痛苦。</p>
+      </div>
+
+      <div class="map-container">
+        <h4 style="color: var(--primary); margin-bottom: 8px;">🚇 簡化版東京地鐵與山手線路線圖</h4>
+        <svg class="map-svg" viewBox="0 0 400 300">
+          <ellipse cx="200" cy="150" rx="140" ry="110" fill="none" stroke="#475569" stroke-width="6" />
+          <ellipse cx="200" cy="150" rx="140" ry="110" fill="none" stroke="#22c55e" stroke-width="4" stroke-dasharray="10 5" />
+          <circle cx="100" cy="80" r="8" fill="#a78bfa" stroke="#0f172a" stroke-width="2" />
+          <text x="70" y="65" fill="#f8fafc" font-size="12" font-weight="bold">池袋 (Super Hotel)</text>
+          <circle cx="300" cy="80" r="6" fill="#f8fafc" stroke="#0f172a" stroke-width="2" />
+          <text x="310" y="80" fill="#94a3b8" font-size="11">上野</text>
+          <circle cx="340" cy="150" r="8" fill="#fb923c" stroke="#0f172a" stroke-width="2" />
+          <text x="350" y="155" fill="#f8fafc" font-size="12" font-weight="bold">東京/日本橋</text>
+          <circle cx="300" cy="220" r="8" fill="#38bdf8" stroke="#0f172a" stroke-width="2" />
+          <text x="310" y="235" fill="#f8fafc" font-size="12" font-weight="bold">品川</text>
+          <path d="M 300 220 C 300 270, 200 280, 160 280" fill="none" stroke="#f43f5e" stroke-width="3" stroke-dasharray="5 3" />
+          <circle cx="160" cy="280" r="6" fill="#f43f5e" stroke="#0f172a" stroke-width="2" />
+          <text x="100" y="295" fill="#fda4af" font-size="11">羽田機場 (Hotel JAL City)</text>
+          <path d="M 100 80 L 30 30" fill="none" stroke="#3b82f6" stroke-width="3" />
+          <circle cx="30" cy="30" r="6" fill="#3b82f6" stroke="#0f172a" stroke-width="2" />
+          <text x="15" y="20" fill="#90cdf4" font-size="11">川越 (35分直達)</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 4: KIDS & SHOPPING ==================== -->
+    <div id="shopping" class="tab-content">
+      <h2>🧸 動漫與購物指南</h2>
+      
+      <div class="card primary-border">
+        <h3>⚡ Pokémon Center TOKYO DX (日本橋)</h3>
+        <p>日本面積最大、裝潢最精緻的寶可夢中心。門口迎客的巨型卡比獸與皮卡丘是極佳的拍照點。</p>
+        <div class="smart-tip-box">
+          <strong>💡 寶可夢咖啡廳 (Pokémon Cafe)：</strong><br>
+          寶可夢咖啡廳就位於 DX 店旁。由於咖啡廳不設現場排隊，**必須 100% 提前預約**。若沒有預約到，可以到旁邊的特別專區購買外帶的造型點心。
+        </div>
+      </div>
+
+      <div class="card tokyo-akiba-border">
+        <h3>👦 鬼滅之刃手辦與卡牌購物貼士</h3>
+        <p>1. **Animate 池袋旗艦店 (二樓)**：設有極大的鬼滅之刃專區，漫畫、鑰匙圈、徽章等周邊最齊全。</p>
+        <p>2. **秋葉原 Radio Kaikan (收音機會館)**：出站即達。整棟樓聚集了數十家手辦二手機及卡牌專賣店（如 AmiAmi、K-BOOKS）。建議在這裡貨比三家，可以淘到許多絕版或特價的鬼滅模型。</p>
+      </div>
+
+      <div class="card accent-border">
+        <h3>🐈 女兒最愛：Mofusand & Sanrio</h3>
+        <p>1. **東京站一番街 (Tokyo Character Street)**：設有 **Mofusand 專賣店 (mofusand もふにゃん本舗)** 以及大耳狗/三麗鷗專賣店，一站式買齊女兒心儀的角色公仔和文具。</p>
+        <p>2. **池袋 Sanrio Cafe**：位於陽光城，主打卡通造型的甜品和咖啡拉花，精緻又好玩。</p>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 5: PRACTICAL INFO ==================== -->
+    <div id="practical" class="tab-content">
+      <h2>💡 實用旅遊資訊</h2>
+
+      <div class="card accent-border">
+        <h3>💸 信用卡消費攻略 (HSBC Red vs RBC)</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">首選：HSBC Red Visa Card</div>
+            <div class="info-value">海外簽賬行政費僅為 <strong>1.95%</strong>，且外幣簽賬可賺取較高回贈。在絕大多數日本商戶刷此卡最划算。</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">備用：RBC Cash Back Mastercard</div>
+            <div class="info-value">外幣簽賬手續費高達 <strong>2.50%</strong>。相比 HSBC 費用略貴，建議作為備用卡使用。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🏪 7-Eleven ATM 提取日元現金教學</h3>
+        <p>日本許多地鐵加值機、小吃店和部分神社**只收現金**。日元不夠時可在任何一間 7-Eleven 提款：</p>
+        <ol style="margin-left: 20px; font-size: 0.85rem; color: var(--text-muted); padding-top: 8px;">
+          <li>將開通了海外功能的香港/加拿大提款卡插入 ATM 機。</li>
+          <li>屏幕會自動識別並顯示繁體中文/英文界面。</li>
+          <li>選擇「提款」➔ 賬戶類型選「儲蓄賬戶 (Savings)」。</li>
+          <li>輸入卡片密碼，並輸入所需提取的日元金額。</li>
+          <li>⚠️ **最重要一步**：當系統問您要以「當地貨幣 (Yen)」還是「本國貨幣 (CAD/HKD)」結算時，**請務必選擇「Yen (日元)」**！若選本國貨幣，會被收取高達 4-8% 的 DCC 匯率差價。</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>🌡️ 7月東京防暑提醒</h3>
+        <p>東京 7 月白日氣溫常達 34-36°C，且濕度極高。帶孩子旅遊時：</p>
+        <p>✓ 確保每人有一部手持風扇。<br>
+        ✓ 白天多安排水族館、商場等室內冷氣充足的景點。<br>
+        ✓ 隨身攜帶保溫瓶，在便利店買冰水或運動飲料補充電解質，防範中暑。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <nav class="tab-bar">
+    <button class="tab-item active" onclick="switchTab('itinerary', this)">
+      <svg viewBox="0 0 24 24"><path d="M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z"/></svg>
+      每日行程
+    </button>
+    <button class="tab-item" onclick="switchTab('checklists', this)">
+      <svg viewBox="0 0 24 24"><path d="M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M10,17L6,13L7.41,11.58L10,14.17L16.59,7.58L18,9L10,17Z"/></svg>
+      行前清單
+    </button>
+    <button class="tab-item" onclick="switchTab('transit', this)">
+      <svg viewBox="0 0 24 24"><path d="M12,2C15.87,2 19,3 19,7V18C19,19.65 17.65,21 16,21L18,23V24H6V23L8,21C6.35,21 5,19.65 5,18V7C5,3 8.13,2 12,2M12,4C9,4 7.5,4.69 7.5,6H16.5C16.5,4.69 15,4 12,4M12,18A1.5,1.5 0 1,0 13.5,16.5A1.5,1.5 0 0,0 12,18M7,9V14H17V9H7Z"/></svg>
+      交通指南
+    </button>
+    <button class="tab-item" onclick="switchTab('shopping', this)">
+      <svg viewBox="0 0 24 24"><path d="M17,18A2,2 0 0,1 19,20A2,2 0 0,1 17,22A2,2 0 0,1 15,20A2,2 0 0,1 17,18M7,18A2,2 0 0,1 9,20A2,2 0 0,1 7,22A2,2 0 0,1 5,20A2,2 0 0,1 7,18M2,2H5.27L6.16,4H20A1,1 0 0,1 21,5C21,5.17 20.95,5.34 20.88,5.5L17.64,11.36C17.27,12 16.57,12.5 15.75,12.5H8.1L6.7,15H19V17H7C5.9,17 5.15,16.25 5.5,15.25L6.85,12.5L3.1,4H2V2Z"/></svg>
+      動漫購物
+    </button>
+    <button class="tab-item" onclick="switchTab('practical', this)">
+      <svg viewBox="0 0 24 24"><path d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M11,14H13V8H11V14Z"/></svg>
+      實用資訊
+    </button>
+  </nav>
+
+  <script>
+    function switchTab(tabId, el) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+
+      const tabs = document.querySelectorAll('.tab-item');
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      el.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function toggleDetails(contentId) {
+      const content = document.getElementById(contentId);
+      const btn = content.previousElementSibling;
+      
+      content.classList.toggle('open');
+      btn.classList.toggle('active');
+    }
+
+    function initChecklists() {
+      const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+      checkboxes.forEach(cb => {
+        const id = cb.id;
+        const savedState = localStorage.getItem(id);
+        if (savedState === 'checked') {
+          cb.checked = true;
+        }
+        cb.addEventListener('click', (e) => {
+          e.stopPropagation();
+          saveCheckboxState(cb);
+        });
+      });
+    }
+
+    function toggleCheckbox(id) {
+      const cb = document.getElementById(id);
+      cb.checked = !cb.checked;
+      saveCheckboxState(cb);
+    }
+
+    function saveCheckboxState(cb) {
+      if (cb.checked) {
+        localStorage.setItem(cb.id, 'checked');
+      } else {
+        localStorage.removeItem(cb.id);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initChecklists();
+    });
+  </script>
+</body>
+</html>
