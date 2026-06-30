@@ -1,0 +1,17 @@
+{
+  "name": "東京親子動漫手冊 2026",
+  "short_name": "東京手冊",
+  "description": "Winnie 一家四口東京行 2026 攻略手冊",
+  "start_url": "/tokyo-trip-2026/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#818cf8",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/pokemon_center_dx.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
