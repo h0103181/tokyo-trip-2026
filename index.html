@@ -340,6 +340,81 @@
       padding-top: 10px;
     }
 
+    .overview-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .mini-action {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: #fffdfd;
+      color: var(--text-main);
+      border-radius: 9999px;
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .mini-action.primary {
+      background: #ffe9f2;
+      color: #b85a82;
+      border-color: #efbfd1;
+    }
+
+    .overview-panel {
+      margin-top: 12px;
+      border-top: 1px solid #f4d7e2;
+      padding-top: 12px;
+      display: none;
+    }
+
+    .overview-panel.open {
+      display: block;
+    }
+
+    .overview-panel-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .overview-panel-card {
+      background: #fffafb;
+      border: 1px solid #f2d5df;
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .overview-panel-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.84rem;
+      color: var(--primary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .overview-panel-card p,
+    .overview-panel-card li {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    .overview-panel-card ul {
+      padding-left: 18px;
+    }
+
+    .overview-panel-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
     /* Spot Cards */
     .spot-card {
       background-color: var(--card-bg);
@@ -358,7 +433,7 @@
 
     .spot-image-container {
       width: 100%;
-      height: 180px;
+      height: 150px;
       position: relative;
       background-color: #f8e7ee;
       overflow: hidden;
@@ -484,6 +559,31 @@
       color: #cb5d8e;
     }
 
+    .resource-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      border-radius: 9999px;
+      border: 1px solid #efc8d6;
+      background: #fff7fb;
+      color: #9a5a76;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .resource-link:hover {
+      background: #fff0f6;
+    }
+
     /* Expandable Accordions */
     .details-toggle {
       background: #fff8fb;
@@ -530,6 +630,50 @@
 
     .details-toggle.active svg {
       transform: rotate(180deg);
+    }
+
+    .handbook-day-brief {
+      background: linear-gradient(180deg, #fff9fb 0%, #fff3f7 100%);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .handbook-day-brief h4 {
+      font-size: 0.9rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .brief-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .brief-item {
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid #f0d5de;
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .brief-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.82rem;
+      color: #b85a82;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .brief-item p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
     }
 
     /* Interactive Checklist */
@@ -707,7 +851,7 @@
     <div class="meta-grid">
       <div class="meta-tag">6天5夜</div>
       <div class="meta-tag">2大2小 (8及12歲)</div>
-      <div class="meta-tag">池袋/川越/台場</div>
+      <div class="meta-tag">池袋/淺草原宿/台場</div>
     </div>
     <div class="action-btn-container">
       <button class="action-btn" onclick="window.print()">
@@ -748,6 +892,22 @@
           <span class="pill">Child Suica</span>
           <span class="pill">Hotel JAL City</span>
         </div>
+        <div class="overview-actions">
+          <button class="mini-action primary" onclick="toggleOverviewPanel('overview-day1', this)">查看重點提醒</button>
+          <button class="mini-action" onclick="goToHandbookDay('day1-handbook')">打開這天詳情</button>
+        </div>
+        <div id="overview-day1" class="overview-panel">
+          <div class="overview-panel-grid">
+            <div class="overview-panel-card">
+              <strong>Critical</strong>
+              <p>抵達時間較晚，JR 東日本旅行服務中心已關門。Adult Welcome Suica 可視乎機場自助售卡機情況再決定；Child Suica 需於櫃台營業時段帶護照辦理。</p>
+            </div>
+            <div class="overview-panel-card">
+              <strong>Shuttle</strong>
+              <p>官方現時列出的 T3 往酒店班次包括 22:25 / 23:05 / 23:55，先到先上；若滿座或錯過，可直接乘的士。</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="overview-card primary-day">
@@ -778,6 +938,22 @@
           <span class="pill">Animate Ikebukuro</span>
           <span class="pill">Sunshine City</span>
           <span class="pill">Sanrio Cafe</span>
+        </div>
+        <div class="overview-actions">
+          <button class="mini-action primary" onclick="toggleOverviewPanel('overview-day2', this)">查看時間與備選</button>
+          <button class="mini-action" onclick="goToHandbookDay('day2-handbook')">打開這天詳情</button>
+        </div>
+        <div id="overview-day2" class="overview-panel">
+          <div class="overview-panel-grid">
+            <div class="overview-panel-card">
+              <strong>Timing</strong>
+              <p>Animate 池袋官方現時為每日 10:00–21:00。Sanrio Cafe Ikebukuro 官方商店頁顯示現時一般營業至 21:00，但仍以當日公告為準。</p>
+            </div>
+            <div class="overview-panel-card">
+              <strong>Nearby Indoor</strong>
+              <p>若孩子想再加室內內容，最順路是 Sunshine Aquarium、TENBOU-PARK、NAMJATOWN 或 Bandai Namco Cross Store。</p>
+            </div>
+          </div>
         </div>
         <div class="overview-footer">如果後面文化日想改成川越，先保留體力比第一天硬上更合理。</div>
       </div>
@@ -812,6 +988,22 @@
           <span class="pill">Character Street</span>
           <span class="pill">Akihabara</span>
         </div>
+        <div class="overview-actions">
+          <button class="mini-action primary" onclick="toggleOverviewPanel('overview-day3', this)">查看彌撒與預約</button>
+          <button class="mini-action" onclick="goToHandbookDay('day3-handbook')">打開這天詳情</button>
+        </div>
+        <div id="overview-day3" class="overview-panel">
+          <div class="overview-panel-grid">
+            <div class="overview-panel-card">
+              <strong>Mass</strong>
+              <p>最穩陣的英文主日彌撒選項是豐島天主堂 12:00 英語，或聖伊納爵天主堂 12:00 英語。現階段不建議把中文彌撒寫入主線。</p>
+            </div>
+            <div class="overview-panel-card">
+              <strong>Reservation</strong>
+              <p>Pokémon Cafe 仍是預約制；若只去商店則可照常前往。Character Street 內也可順手找 mofusand 常設店。</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="overview-card primary-day">
@@ -843,6 +1035,22 @@
           <span class="pill">Senso-ji</span>
           <span class="pill">Harajuku</span>
           <span class="pill">Kiddy Land</span>
+        </div>
+        <div class="overview-actions">
+          <button class="mini-action primary" onclick="toggleOverviewPanel('overview-day4', this)">查看避暑與補充點</button>
+          <button class="mini-action" onclick="goToHandbookDay('day4-handbook')">打開這天詳情</button>
+        </div>
+        <div id="overview-day4" class="overview-panel">
+          <div class="overview-panel-grid">
+            <div class="overview-panel-card">
+              <strong>Heat Plan</strong>
+              <p>淺草主線建議安排在上午完成。若太熱，可直接插入 Asakusa Culture Tourist Information Center 展望台或提早轉往原宿。</p>
+            </div>
+            <div class="overview-panel-card">
+              <strong>Nearby Optional</strong>
+              <p>若全家狀態好，淺草可順加 TOKYO mizumachi / Sumida River Walk；若女兒想集中可愛購物，下午主攻 Kiddy Land 即可。</p>
+            </div>
+          </div>
         </div>
         <div class="overview-footer">川越沒有被刪掉，改放到手冊裡作為文化日替代方案，避免主線同時出現兩個版本。</div>
       </div>
@@ -876,6 +1084,22 @@
           <span class="pill">Unicorn Gundam</span>
           <span class="pill">Rainbow Bridge View</span>
         </div>
+        <div class="overview-actions">
+          <button class="mini-action primary" onclick="toggleOverviewPanel('overview-day5', this)">查看表演與備用點</button>
+          <button class="mini-action" onclick="goToHandbookDay('day5-handbook')">打開這天詳情</button>
+        </div>
+        <div id="overview-day5" class="overview-panel">
+          <div class="overview-panel-grid">
+            <div class="overview-panel-card">
+              <strong>Performance</strong>
+              <p>鋼彈白天變身一般為 11:00 / 13:00 / 15:00 / 17:00；夜間 19:00–21:30 每 30 分鐘一場，但節目內容會更新，當日以官方為準。</p>
+            </div>
+            <div class="overview-panel-card">
+              <strong>Nearby Indoor</strong>
+              <p>若天雨或孩子還有力，可在台場區加入 Gundam Base、Daiba 1-chome、LEGOLAND Discovery Center 或 DECKS 內用餐。</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="overview-card">
@@ -890,16 +1114,45 @@
           <span class="pill">Airport buffer</span>
           <span class="pill">CX549</span>
         </div>
+        <div class="overview-actions">
+          <button class="mini-action primary" onclick="toggleOverviewPanel('overview-day6', this)">查看最後一天提醒</button>
+          <button class="mini-action" onclick="goToHandbookDay('day6-handbook')">打開這天詳情</button>
+        </div>
+        <div id="overview-day6" class="overview-panel">
+          <div class="overview-panel-grid">
+            <div class="overview-panel-card">
+              <strong>Buffer</strong>
+              <p>最後一天不建議再拉遠線。若只是補貨，優先選酒店附近超市、藥妝或機場商店，把機場緩衝放在前面。</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div id="handbook" class="tab-content">
-      <h2>🗓️ 每日詳細行程</h2>
-      <p class="summary-note">這裡保留旅行手冊式的背景資料、貼士和景點解說。若只想快速看主流程，先看「行程總覽」。</p>
+      <h2>🗓️ 行程詳情與景點手冊</h2>
+      <p class="summary-note">這裡分兩層閱讀：先看每天的 Morning / Afternoon / Evening 安排與關鍵提醒，再看下面的景點說明、備選方案與購物貼士。這樣不會只有大圖，卻找不到行程骨架。</p>
       
       <!-- Day 1 -->
-      <h3>7月3日 (五) ➔ 抵達東京·羽田入住</h3>
+      <h3 id="day1-handbook">7月3日 (五) ➔ 抵達東京·羽田入住</h3>
       <div class="timeline">
+        <div class="handbook-day-brief">
+          <h4>Day Planner</h4>
+          <div class="brief-grid">
+            <div class="brief-item">
+              <strong>Arrival</strong>
+              <p>21:35 抵達羽田 T3，出關連取行李預留 45–90 分鐘。</p>
+            </div>
+            <div class="brief-item">
+              <strong>Night</strong>
+              <p>直接去酒店，這天不再加景點，重點是順利入境與睡眠。</p>
+            </div>
+            <div class="brief-item">
+              <strong>Critical</strong>
+              <p>JR 東日本旅行服務中心現時 20:00 關門，這晚不能假設一定可在櫃台辦理 Child Suica。</p>
+            </div>
+          </div>
+        </div>
         <div class="card primary-border" style="padding: 12px; margin-bottom: 10px;">
           <div class="timeline-time" style="font-weight:700; color:var(--primary);">21:35 ✈️</div>
           <div class="timeline-title" style="font-weight:700;">抵達羽田機場第3航廈 (CX542)</div>
@@ -908,18 +1161,17 @@
             <li>在機上提前完成 Visit Japan Web 入境填報（掃描二維碼）</li>
             <li>入境審查：出示護照及 QR Code，預計等候 15-30 分鐘</li>
             <li>領取行李 → 通過海關申報（選擇綠色通道）</li>
-            <li>出閘後前往 JR 東日本旅行服務中心購買 Welcome Suica (免押金)</li>
+            <li>若成人想即晚拿 IC 卡，可檢查 Welcome Suica 自助售卡機是否可用；Child Suica 則留待 JR 櫃台營業時間辦理。</li>
           </ol>
           <div class="alert" style="margin-top:8px;">
-            ⚠️ <strong>Child Suica 重要提示：</strong>8歲女兒必須在此櫃台出示護照辦理 Child Suica（半價乘車卡）。6歲以上才需購買，嬰兒免費。
+            ⚠️ <strong>Child Suica 重要提示：</strong>8歲女兒屬於 Child Suica 適用年齡，但要以護照核實年齡。由於此航班抵達時段已晚，請不要把即晚辦卡當成必定完成項。
           </div>
         </div>
 
         <!-- Hotel Card -->
         <div class="spot-card" style="border-left: 3px solid var(--primary);">
-          <div class="spot-image-container" style="background: linear-gradient(135deg, #fff0f4 0%, #ffe9f0 58%, #e9f7ff 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;">
-            <div style="font-size:2.5rem;">🏨</div>
-            <div style="color:var(--text-muted); font-size:0.85rem; text-align:center;">Hotel JAL City<br>Haneda Tokyo<br>West Wing</div>
+          <div class="spot-image-container">
+            <img src="assets/hotel_jal_haneda.jpg" class="spot-img" alt="Hotel JAL City Haneda Tokyo West Wing">
           </div>
           <div class="spot-info-container">
             <div class="spot-title-row">
@@ -934,15 +1186,15 @@
             <table class="spot-details-table">
               <tr>
                 <td class="label-col">接駁班次</td>
-                <td class="val-col">23:05 / 23:55（最後班次）在 T3 出閘後跟指示牌到達巴士站</td>
+                <td class="val-col">現時官方 T3 晚間班次包括 22:25 / 23:05 / 23:55；先到先上，滿座便需改乘的士。</td>
               </tr>
               <tr>
                 <td class="label-col">酒店地址</td>
-                <td class="val-col">東京都大田區羽田空港3-5-10 / 03-5756-8800</td>
+                <td class="val-col">東京都大田區羽田旭町4-16 / 03-5735-2525</td>
               </tr>
               <tr>
                 <td class="label-col">退房時間</td>
-                <td class="val-col">12:00 (7/4 早上退房搬往池袋酒店)</td>
+                <td class="val-col">11:00（標準退房；翌日早餐後搬往池袋）</td>
               </tr>
             </table>
             <div class="smart-tip-box">
@@ -952,26 +1204,44 @@
         </div>
 
         <div class="card primary-border" style="padding: 12px; margin-bottom: 10px;">
-          <div class="timeline-time" style="font-weight:700; color:var(--primary);">23:05 / 23:55 🚍</div>
+          <div class="timeline-time" style="font-weight:700; color:var(--primary);">22:25 / 23:05 / 23:55 🚍</div>
           <div class="timeline-title" style="font-weight:700;">搭乘酒店免費 Shuttle 前往 Hotel JAL City</div>
           <p style="font-size:0.85rem; margin-top:4px; margin-bottom:0;">在 T3 出閘口附近跟隨「Hotel JAL City」指示牌找到免費接駁巴士站。車程約 10-15 分鐘。若錯過末班車可在的士排隊處叫車，費用約 ¥1,000。入住後好好休息，迎接明天的池袋冒險！</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+JAL+City+Haneda+Tokyo+West+Wing" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+            <a class="resource-link" href="https://haneda.jalcity.co.jp/en/" target="_blank" rel="noopener noreferrer">↗ 官方網站</a>
+            <a class="resource-link" href="https://www.haneda-hotel.com/english/shuttlebus" target="_blank" rel="noopener noreferrer">🚌 Shuttle 資訊</a>
+          </div>
         </div>
       </div>
 
       <!-- Day 2 -->
-      <h3>7月4日 (六) ➔ 池袋動漫與溫泉日</h3>
+      <h3 id="day2-handbook">7月4日 (六) ➔ 池袋動漫與溫泉日</h3>
       <div class="timeline">
+        <div class="handbook-day-brief">
+          <h4>Day Planner</h4>
+          <div class="brief-grid">
+            <div class="brief-item">
+              <strong>Morning</strong>
+              <p>酒店早餐後直上池袋，先解決大行李與 check-in 問題。</p>
+            </div>
+            <div class="brief-item">
+              <strong>Midday</strong>
+              <p>Animate 池袋旗艦店加 Sanrio Cafe 午餐，兒子和女兒都先有主場。</p>
+            </div>
+            <div class="brief-item">
+              <strong>Afternoon / Night</strong>
+              <p>Sunshine City、扭蛋、角色商店，之後回酒店溫泉，不把第一個完整白天做成衝刺日。</p>
+            </div>
+          </div>
+        </div>
         <!-- Spot 1: Animate -->
         <div class="spot-card ikebukuro-border">
           <div class="spot-image-container">
             <div class="spot-badges">
               <span class="badge badge-mustgo">必到聖地</span>
             </div>
-            <div style="background: linear-gradient(135deg, #ffe8f1 0%, #ffd8e7 50%, #eef8ff 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:6px;">
-              <div style="font-size:2.2rem;">🎌</div>
-              <div style="color:#cc5b89; font-size:0.85rem; font-weight:700; text-align:center; line-height:1.3;">Animate<br>池袋旗艦店</div>
-              <div style="color:#9d7788; font-size:0.7rem;">B2F～10F</div>
-            </div>
+            <img src="assets/animate_ikebukuro.jpg" class="spot-img" alt="Animate 池袋旗艦店">
           </div>
           <div class="spot-info-container">
             <div class="spot-title-row">
@@ -995,6 +1265,10 @@
             </table>
             <div class="smart-tip-box">
               <strong>💡 旅遊貼士：</strong>7月人潮洶湧，冷氣雖足，但多個樓層人頭攢動。建議與孩子約定好集合時間與地點，避免走失；二樓的鬼滅之刃專櫃最熱門。
+            </div>
+            <div class="resource-links">
+              <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=Animate+Ikebukuro+Flagship+Store" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+              <a class="resource-link" href="https://www.animate.co.jp/en/shop/ikebukuro/" target="_blank" rel="noopener noreferrer">↗ 官方網站</a>
             </div>
           </div>
         </div>
@@ -1020,13 +1294,17 @@
             <table class="spot-details-table">
               <tr>
                 <td class="label-col">營業時間</td>
-                <td class="val-col">10:00–20:00 (L.O. 19:30)</td>
+                <td class="val-col">官方商店頁目前顯示一般營業至 21:00；到訪前再看當日公告較穩妥。</td>
               </tr>
               <tr>
                 <td class="label-col">消費預算</td>
                 <td class="val-col">人均約 ¥1,000–¥2,000</td>
               </tr>
             </table>
+            <div class="resource-links">
+              <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=Sanrio+Cafe+Ikebukuro" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+              <a class="resource-link" href="https://stores.sanrio.co.jp/en/8152100" target="_blank" rel="noopener noreferrer">↗ 官方網站</a>
+            </div>
           </div>
         </div>
 
@@ -1037,16 +1315,34 @@
         </button>
         <div id="d2-alts" class="details-content">
           <div class="details-inner">
-            <p style="margin-bottom: 8px;"><strong>1. 陽光水族館 (Sunshine Aquarium) ★★★★☆</strong><br>位於 Sunshine City 頂樓，以「天空綠洲」為概念，可以看見企鵝在您頭頂的透明水槽中游動。門票：成人 ¥2,500，中小學生 ¥1,300。</p>
-            <p style="margin-bottom: 8px;"><strong>2. 陽光60展望台 (TENBOU-PARK) ★★★★☆</strong><br>全新裝修的室內草地展望台，可以俯瞰東京全景，天氣好時還能遠眺富士山。非常適合帶孩子進去一邊喝飲料一邊休息。</p>
-            <p style="margin-bottom: 0;"><strong>3. 無敵家拉麵 (Mutekiya) ★★★★★</strong><br>池袋最出名的濃郁豚骨拉麵店。因為不設分店，長期大排長龍。建議在下午 3-4 點非用餐高峰時間前往，避開排隊人潮。</p>
+            <p style="margin-bottom: 8px;"><strong>1. 陽光水族館 (Sunshine Aquarium) ★★★★☆</strong><br>位於 Sunshine City 頂樓，以「天空綠洲」為概念，可以看見企鵝在您頭頂的透明水槽中游動。現時成人票約 ¥2,600–¥3,200，中小學生 ¥1,300，價格按日期浮動。</p>
+            <p style="margin-bottom: 8px;"><strong>2. 陽光60展望台 (TENBOU-PARK) ★★★★☆</strong><br>11:00–21:00，最後入場 20:30。若中午太熱，這裡是很順路的室內休息位。</p>
+            <p style="margin-bottom: 8px;"><strong>3. NAMJATOWN / Bandai Namco Cross Store ★★★★☆</strong><br>兩者都在 Sunshine City 系統內，都是極低摩擦的室內加點。前者偏親子玩樂，後者偏角色商品、扭蛋和展區。</p>
+            <p style="margin-bottom: 0;"><strong>4. 無敵家拉麵 (Mutekiya) ★★★★★</strong><br>池袋最出名的濃郁豚骨拉麵店。建議避開正餐時間，否則排隊成本很高。</p>
           </div>
         </div>
       </div>
 
       <!-- Day 3 -->
-      <h3>7月5日 (日) ➔ 彌撒 + 寶可夢與秋葉原</h3>
+      <h3 id="day3-handbook">7月5日 (日) ➔ 彌撒 + 寶可夢與秋葉原</h3>
       <div class="timeline">
+        <div class="handbook-day-brief">
+          <h4>Day Planner</h4>
+          <div class="brief-grid">
+            <div class="brief-item">
+              <strong>Morning</strong>
+              <p>先完成主日彌撒，再往東京站 / 日本橋區移動。</p>
+            </div>
+            <div class="brief-item">
+              <strong>Midday</strong>
+              <p>東京站午餐後進 Pokémon Center TOKYO DX 與 Character Street。</p>
+            </div>
+            <div class="brief-item">
+              <strong>Afternoon</strong>
+              <p>秋葉原集中處理鬼滅、模型、二手收藏與卡牌，不再硬塞 Nintendo 動線。</p>
+            </div>
+          </div>
+        </div>
         <!-- Sunday Mass Info Card -->
         <div class="card tokyo-akiba-border" style="margin-bottom: 20px;">
           <h4 style="color:var(--tokyo-akiba); margin-bottom:8px;">⛪ 星期日主日彌撒指引</h4>
@@ -1058,8 +1354,14 @@
           </div>
           <div style="background:rgba(0,0,0,0.2); padding:10px; border-radius:8px; font-size:0.8rem;">
             <strong>選項②：聖伊納爵天主堂 (四谷) ➔ 國際化大教堂</strong><br>
-            • 彌撒時間：日語 10:00 / 英語 12:00 / 中文 13:30 (每週時間可能有調整)<br>
+            • 彌撒時間：日語 10:00 / 英語 12:00（其他語言場次請臨近出發再查官方）<br>
             • 交通：池袋地鐵丸之內線直達「四谷站」(約15分鐘)，教堂就在出口旁。
+          </div>
+          <div class="resource-links">
+            <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=Toshima+Catholic+Church+Tokyo" target="_blank" rel="noopener noreferrer">📍 豐島天主堂地圖</a>
+            <a class="resource-link" href="https://tokyo-catholic.com/en/parishes/tokyo/toshima/" target="_blank" rel="noopener noreferrer">↗ 豐島官方資料</a>
+            <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=St+Ignatius+Church+Tokyo" target="_blank" rel="noopener noreferrer">📍 四谷天主堂地圖</a>
+            <a class="resource-link" href="https://tokyo.catholic.jp/en/parishes/tokyo/kojimachi/" target="_blank" rel="noopener noreferrer">↗ 四谷官方資料</a>
           </div>
         </div>
 
@@ -1091,6 +1393,11 @@
                 <td class="val-col">東京都中央區日本橋2-11-2 高島屋S.C.東館5F</td>
               </tr>
             </table>
+            <div class="resource-links">
+              <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=Pokemon+Center+TOKYO+DX" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+              <a class="resource-link" href="https://shop.pokemon.co.jp/en/shop/pokemoncenter-tokyodx/" target="_blank" rel="noopener noreferrer">↗ 官方網站</a>
+              <a class="resource-link" href="https://www.pokemon-cafe.jp/en/cafe/faq/" target="_blank" rel="noopener noreferrer">☕ Café 資訊</a>
+            </div>
           </div>
         </div>
 
@@ -1111,7 +1418,11 @@
               <span class="stat-item">⏱️ 建議：2小時</span>
               <span class="stat-item">🚆 交通：東京站搭JR山手線直達 (4分鐘)</span>
             </div>
-            <p class="spot-description">動漫文化的心臟地帶。出站即可看見 **Radio Kaikan (收音機會館)**，整棟樓開滿了手辦、卡牌和玩具專賣店。兒子一定能找到他最愛的鬼滅之刃限量周邊。</p>
+            <p class="spot-description">動漫文化的心臟地帶。出站即可看見 <strong>Radio Kaikan (收音機會館)</strong>，整棟樓開滿了手辦、卡牌和玩具專賣店。兒子一定能找到他最愛的鬼滅之刃限量周邊。</p>
+            <div class="resource-links">
+              <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=Akihabara+Station" target="_blank" rel="noopener noreferrer">📍 秋葉原地圖</a>
+              <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=Radio+Kaikan+Akihabara" target="_blank" rel="noopener noreferrer">📍 Radio Kaikan</a>
+            </div>
           </div>
         </div>
 
@@ -1122,25 +1433,41 @@
         </button>
         <div id="d3-alts" class="details-content">
           <div class="details-inner">
-            <p style="margin-bottom: 8px;"><strong>1. 神田明神 (Kanda Myojin Shrine) ★★★★☆</strong><br>秋葉原附近的千年歷史神社。與許多動漫（如鬼滅之刃、LoveLive）有聯名合作，連神社的繪馬和御守都是動漫造型，非常特別。</p>
-            <p style="margin-bottom: 8px;"><strong>2. Yodobashi Akiba (友都八喜巨型電器城) ★★★★★</strong><br>位於秋葉原站東口，擁有巨大的扭蛋玩具區和兒童玩具樓層。累了還可以去 8 樓的美食街用餐，有各式咖哩和拉麵，非常適合家庭。</p>
-            <p style="margin-bottom: 0;"><strong>3. 六厘舍沾麵 (Rokurinsha) ★★★★☆</strong><br>位於東京站地下的「拉麵街」，以極其濃郁的魚介豚骨沾麵著稱，深受香港遊客喜愛。</p>
+            <p style="margin-bottom: 8px;"><strong>1. Pokémon Cafe 預約提醒 ★★★★★</strong><br>官方仍是預約制，當天 8:00 前若有空位仍可在系統訂位；沒有位也可只逛店和買部分外帶或商品。</p>
+            <p style="margin-bottom: 8px;"><strong>2. 東京站一番街的 mofusand 常設店 ★★★★☆</strong><br>如果女兒在 Day 3 已經看到喜歡的 mofusand 角色物，下午去原宿時壓力會低很多。</p>
+            <p style="margin-bottom: 8px;"><strong>3. 神田明神 (Kanda Myojin Shrine) ★★★★☆</strong><br>秋葉原附近的千年歷史神社，若全家還有體力可作短線文化補充。</p>
+            <p style="margin-bottom: 8px;"><strong>4. Yodobashi Akiba (友都八喜巨型電器城) ★★★★★</strong><br>位於秋葉原站東口，擁有巨大的扭蛋玩具區和兒童玩具樓層。累了還可以去 8 樓的美食街用餐。</p>
+            <p style="margin-bottom: 0;"><strong>5. 六厘舍沾麵 (Rokurinsha) ★★★★☆</strong><br>位於東京站地下拉麵街，適合做午餐或返程前的重口味一餐。</p>
           </div>
         </div>
       </div>
 
       <!-- Day 4 -->
-      <h3>7月6日 (一) ➔ 淺草 + 原宿可愛購物日</h3>
+      <h3 id="day4-handbook">7月6日 (一) ➔ 淺草 + 原宿可愛購物日</h3>
       <div class="timeline">
+        <div class="handbook-day-brief">
+          <h4>Day Planner</h4>
+          <div class="brief-grid">
+            <div class="brief-item">
+              <strong>Morning</strong>
+              <p>雷門、仲見世、淺草寺、小食與拍照，主打經典東京與鬼滅氣氛。</p>
+            </div>
+            <div class="brief-item">
+              <strong>Afternoon</strong>
+              <p>轉往原宿 Kiddy Land 與角色購物，把女兒的可愛精品主線放進正式行程。</p>
+            </div>
+            <div class="brief-item">
+              <strong>Critical</strong>
+              <p>7 月中午易暴曬，淺草盡量上午完成；要休息就優先找室內點，而不是硬撐步行。</p>
+            </div>
+          </div>
+        </div>
         <div class="spot-card tokyo-akiba-border">
           <div class="spot-image-container">
             <div class="spot-badges">
               <span class="badge badge-mustgo">文化主線</span>
             </div>
-            <div style="background: linear-gradient(135deg, #fff1e7 0%, #ffe3d2 45%, #fff6fa 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:8px;">
-              <div style="font-size:2.3rem;">🏮</div>
-              <div style="color:#d1774d; font-size:0.9rem; font-weight:800; text-align:center;">Asakusa<br>淺草寺 · 雷門 · 仲見世</div>
-            </div>
+            <img src="assets/sensoji.jpg" class="spot-img" alt="淺草寺與淺草街景">
           </div>
           <div class="spot-info-container">
             <div class="spot-title-row">
@@ -1166,6 +1493,10 @@
               <strong>💡 鬼滅氛圍的用法：</strong><br>
               可以把淺草寫成「有鬼滅淺草篇氣氛的場景感」，但不要寫成作品的實際取景地。這樣既保留故事感，也不會讓行程資訊失真。
             </div>
+            <div class="resource-links">
+              <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=Senso-ji+Temple+Asakusa" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+              <a class="resource-link" href="https://www.senso-ji.jp/english/" target="_blank" rel="noopener noreferrer">↗ 官方網站</a>
+            </div>
           </div>
         </div>
 
@@ -1174,10 +1505,7 @@
             <div class="spot-badges">
               <span class="badge badge-mustgo">女兒重點</span>
             </div>
-            <div style="background: linear-gradient(135deg, #eef9f1 0%, #e2f5ff 55%, #fff4f8 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:8px;">
-              <div style="font-size:2.3rem;">🛍️</div>
-              <div style="color:#4f8caf; font-size:0.9rem; font-weight:800; text-align:center;">Harajuku<br>Kiddy Land · Cute Shopping</div>
-            </div>
+            <img src="assets/harajuku.jpg" class="spot-img" alt="原宿街景">
           </div>
           <div class="spot-info-container">
             <div class="spot-title-row">
@@ -1199,6 +1527,10 @@
                 <td class="val-col">先完成 Kiddy Land，再視孩子精神決定是否續逛，傍晚可直接回池袋。</td>
               </tr>
             </table>
+            <div class="resource-links">
+              <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=Kiddy+Land+Harajuku" target="_blank" rel="noopener noreferrer">📍 Kiddy Land 地圖</a>
+              <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=Harajuku+Station" target="_blank" rel="noopener noreferrer">📍 原宿站</a>
+            </div>
           </div>
         </div>
 
@@ -1208,16 +1540,34 @@
         </button>
         <div id="d4-alts" class="details-content">
           <div class="details-inner">
-            <p style="margin-bottom: 8px;"><strong>1. 川越替代版 ★★★★★</strong><br>如果更想要老街、和服和番薯小食，川越仍然是很好的文化日替代方案。它現在保留在手冊中作為「可替換行程」，避免主線同時出現兩個版本。</p>
-            <p style="margin-bottom: 8px;"><strong>2. 淺草寺附近和服拍照 ★★★★☆</strong><br>如果已經在川越租過浴衣，淺草這天不必再租；輕裝拍照會更舒服，尤其 7 月高溫下更實際。</p>
-            <p style="margin-bottom: 0;"><strong>3. 回池袋補逛 Sunshine City ★★★★☆</strong><br>這天傍晚回池袋後，可把 Day 2 沒逛完的角色商店和扭蛋補完，保持整趟旅程的節奏鬆一點。</p>
+            <p style="margin-bottom: 8px;"><strong>1. Asakusa 文化觀光中心展望台 ★★★★☆</strong><br>就在雷門對面，免費入場。若想俯瞰仲見世與淺草寺，這是低成本又很順路的補充點。</p>
+            <p style="margin-bottom: 8px;"><strong>2. TOKYO mizumachi / Sumida River Walk ★★★★☆</strong><br>若上午進度快、天氣又未太辛苦，可作為淺草邊緣延伸，氣氛較開揚，但仍建議視熱度決定是否加入。</p>
+            <p style="margin-bottom: 8px;"><strong>3. 川越替代版 ★★★★★</strong><br>如果更想要老街、和服和番薯小食，川越仍然是很好的文化日替代方案。它保留在手冊中，避免主線同時出現兩個版本。</p>
+            <p style="margin-bottom: 0;"><strong>4. 回池袋補逛 Sunshine City ★★★★☆</strong><br>這天傍晚回池袋後，可把 Day 2 沒逛完的角色商店和扭蛋補完，保持整趟旅程的節奏鬆一點。</p>
           </div>
         </div>
       </div>
 
       <!-- Day 5 -->
-      <h3>7月7日 (二) ➔ 水族館與台場夜景</h3>
+      <h3 id="day5-handbook">7月7日 (二) ➔ 水族館與台場夜景</h3>
       <div class="timeline">
+        <div class="handbook-day-brief">
+          <h4>Day Planner</h4>
+          <div class="brief-grid">
+            <div class="brief-item">
+              <strong>Morning</strong>
+              <p>先處理退房與行李，把人和大件物件分離，之後路線才會輕鬆。</p>
+            </div>
+            <div class="brief-item">
+              <strong>Midday</strong>
+              <p>Maxell Aqua Park Shinagawa 作為冷氣充足的核心景點。</p>
+            </div>
+            <div class="brief-item">
+              <strong>Afternoon / Night</strong>
+              <p>傍晚轉去台場，配合鋼彈演出、海濱夜景與晚餐，留一個輕鬆的最後完整晚上。</p>
+            </div>
+          </div>
+        </div>
         <!-- Spot 6: Maxell Aqua Park -->
         <div class="spot-card odaiba-border">
           <div class="spot-image-container">
@@ -1235,7 +1585,7 @@
               <span class="stat-item">⏱️ 建議：2小時</span>
               <span class="stat-item">🚆 交通：品川站高輪口步行2分鐘</span>
             </div>
-            <p class="spot-description">結合現代聲光投影技術的超人氣市內水族館。最矚目的是伴隨音樂、水幕與炫彩燈光的 **海豚表演秀 (Dolphin Show)**。全館位於室內，冷氣開放，非常適合炎熱的 7 月天。</p>
+            <p class="spot-description">結合現代聲光投影技術的超人氣市內水族館。最矚目的是伴隨音樂、水幕與炫彩燈光的 <strong>海豚表演秀 (Dolphin Show)</strong>。全館位於室內，冷氣開放，非常適合炎熱的 7 月天。</p>
             <table class="spot-details-table">
               <tr>
                 <td class="label-col">門票價格</td>
@@ -1246,6 +1596,10 @@
                 <td class="val-col">海豚秀前排座位會被淋濕，建議購買雨衣 (¥100) 或坐後排。</td>
               </tr>
             </table>
+            <div class="resource-links">
+              <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=Maxell+Aqua+Park+Shinagawa" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+              <a class="resource-link" href="https://www.aqua-park.jp/en/aqua/info/index.html" target="_blank" rel="noopener noreferrer">↗ 官方網站</a>
+            </div>
           </div>
         </div>
 
@@ -1270,7 +1624,12 @@
             <div class="smart-tip-box">
               <strong>💡 鋼彈燈光秀時間表：</strong><br>
               • 白天變身：11:00, 13:00, 15:00, 17:00 (僅頭部變形)<br>
-              • 晚上變身 (配合大螢幕)：19:00 - 21:30 (每30分鐘一場，有不同影片主題)
+              • 晚上變身：19:00 - 21:30 (每30分鐘一場，有不同影片主題；官方節目內容會更新)<br>
+              • 這座立像官方已公告將於 2026 年 8 月 31 日結束展示，因此你們 7 月這次屬於最後觀賞窗口之一
+            </div>
+            <div class="resource-links">
+              <a class="resource-link" href="https://www.google.com/maps/search/?api=1&query=Unicorn+Gundam+Statue+DiverCity+Tokyo" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+              <a class="resource-link" href="https://www.unicorn-gundam-statue.jp/en/" target="_blank" rel="noopener noreferrer">↗ 官方網站</a>
             </div>
           </div>
         </div>
@@ -1282,16 +1641,30 @@
         </button>
         <div id="d5-alts" class="details-content">
           <div class="details-inner">
-            <p style="margin-bottom: 8px;"><strong>1. 台場一丁目商店街 (DECKS Tokyo Beach) ★★★★☆</strong><br>位於 DECKS 商場 4 樓，完全重現了日本昭和時代 (上世紀 60-70 年代) 的復古街景。有古早味柑仔店、投幣式復古遊戲機和鬼屋，小孩子會覺得非常新奇。</p>
-            <p style="margin-bottom: 8px;"><strong>2. 樂高探索中心 (LEGOLAND Discovery Center) ★★★★☆</strong><br>室內樂高積木主題樂園，有 4D 電影院、樂高拼砌區和射擊遊戲。如果遇到下雨天，這是一個完美的備用景點。</p>
-            <p style="margin-bottom: 0;"><strong>3. Bills 鬆餅 (Bills Odaiba) ★★★★★</strong><br>位於 DECKS 3 樓，被譽為「世界第一的早餐鬆餅」。臨窗座位可以直面 Rainbow Bridge (彩虹大橋)，景色絕美，推薦招牌蜂蜜香蕉奶油鬆餅。</p>
+            <p style="margin-bottom: 8px;"><strong>1. 台場一丁目商店街 (DECKS Tokyo Beach) ★★★★☆</strong><br>位於 DECKS 商場 4 樓，完全重現日本昭和風街景。若想讓孩子在購物以外有點小遊戲，這是很順路的輕加點。</p>
+            <p style="margin-bottom: 8px;"><strong>2. 樂高探索中心 (LEGOLAND Discovery Center) ★★★★☆</strong><br>官方常見時段為平日 10:00–18:00、週末及假日可延至 19:00；下雨天尤其實用。</p>
+            <p style="margin-bottom: 8px;"><strong>3. THE GUNDAM BASE TOKYO ANNEX ★★★★☆</strong><br>就在 DiverCity 2F，若兒子對鋼彈模型有興趣，這比單看廣場打卡更完整。</p>
+            <p style="margin-bottom: 0;"><strong>4. Bills 鬆餅 (Bills Odaiba) ★★★★★</strong><br>位於 DECKS 3 樓，窗邊正對 Rainbow Bridge。若想把最後一晚做得舒服一點，這是氣氛很好的晚餐或早晚茶位。</p>
           </div>
         </div>
       </div>
 
       <!-- Day 6 -->
-      <h3>7月8日 (三) ➔ 補貨與回港</h3>
+      <h3 id="day6-handbook">7月8日 (三) ➔ 補貨與回港</h3>
       <div class="timeline">
+        <div class="handbook-day-brief">
+          <h4>Day Planner</h4>
+          <div class="brief-grid">
+            <div class="brief-item">
+              <strong>Morning</strong>
+              <p>只做近距離補貨，不再安排遠線景點。</p>
+            </div>
+            <div class="brief-item">
+              <strong>Airport</strong>
+              <p>13:30 左右到羽田 T3，預留行李託運與最後伴手禮時間。</p>
+            </div>
+          </div>
+        </div>
         <div class="card primary-border" style="padding: 12px; margin-bottom: 10px;">
           <div class="timeline-time" style="font-weight:700; color:var(--primary);">09:00 - 11:30</div>
           <div class="timeline-title" style="font-weight:700;">🛒 Costco 補貨 或 酒店周邊超市最後採購</div>
@@ -1380,17 +1753,17 @@
       <div class="card primary-border">
         <h3>💳 Welcome Suica 購買與使用</h3>
         <p><strong>外國遊客專用卡特點：</strong></p>
-        <p>1. **無押金**：不需要扣除 ¥500，餘額可全數用來乘車或在超商消費。</p>
-        <p>2. **28天有效期**：過期後卡內**餘額不能退還**，請在最後一天於機場免稅店將餘額刷完。</p>
-        <p>3. **👧 8歲女兒辦 Child Suica (半價卡)**：乘車和巴士均自動半價。必須在羽田機場 JR 東日本旅行服務中心出示護照以確認年齡購買。</p>
+        <p>1. <strong>無押金</strong>：不需要扣除 ¥500，餘額可全數用來乘車或在超商消費。</p>
+        <p>2. <strong>28天有效期</strong>：過期後卡內<strong>餘額不能退還</strong>，請在最後一天於機場免稅店將餘額刷完。</p>
+        <p>3. <strong>👧 8歲女兒辦 Child Suica (半價卡)</strong>：乘車和巴士均自動半價。需以護照核實年齡；羽田 T3 的 JR 東日本旅行服務中心現時營業至 20:00，深夜到達時不要假設櫃台一定可辦。</p>
       </div>
 
       <div class="card">
         <h3>🧳 攜帶 3 大行李乘車與的士叫車政策</h3>
         <p><strong>1. JR山手線及普通地鐵行李政策：</strong><br>
-        無須像新幹線一樣預約行李位，所有大行李均可免費攜帶上車。但請**務必避開平日通勤高峰時間 (07:30–09:00)**，否則地鐵內擁擠，拖行李會極為不便。</p>
+        無須像新幹線一樣預約行李位，所有大行李均可免費攜帶上車。但請<strong>務必避開平日通勤高峰時間 (07:30–09:00)</strong>，否則地鐵內擁擠，拖行李會極為不便。</p>
         <p><strong>2. 搬酒店日的最佳安排 (7/4 早上)：</strong><br>
-        羽田機場 JAL City ➔ 池袋 Super Hotel。由於有 3 件大行李和 2 個孩子，**強烈建議直接搭乘的士 (或叫 Uber Premier Van)**。車程約 40 分鐘，費用約 ¥10,000–¥12,000，能省去轉車、拖行李上下樓梯的痛苦。</p>
+        羽田機場 JAL City ➔ 池袋 Super Hotel。由於有 3 件大行李和 2 個孩子，<strong>強烈建議直接搭乘的士 (或叫 Uber Premier Van)</strong>。車程約 40 分鐘，費用約 ¥10,000–¥12,000，能省去轉車、拖行李上下樓梯的痛苦。</p>
       </div>
 
       <div class="map-container">
@@ -1399,19 +1772,19 @@
           <ellipse cx="200" cy="150" rx="140" ry="110" fill="none" stroke="#475569" stroke-width="6" />
           <ellipse cx="200" cy="150" rx="140" ry="110" fill="none" stroke="#22c55e" stroke-width="4" stroke-dasharray="10 5" />
           <circle cx="100" cy="80" r="8" fill="#f09bb5" stroke="#ffffff" stroke-width="2" />
-          <text x="70" y="65" fill="#f8fafc" font-size="12" font-weight="bold">池袋 (Super Hotel)</text>
+          <text x="70" y="65" fill="#6f3450" font-size="12" font-weight="bold">池袋 (Super Hotel)</text>
           <circle cx="300" cy="80" r="6" fill="#ffffff" stroke="#ffffff" stroke-width="2" />
-          <text x="310" y="80" fill="#94a3b8" font-size="11">上野</text>
+          <text x="310" y="80" fill="#6e7287" font-size="11">上野</text>
           <circle cx="340" cy="150" r="8" fill="#ffb86b" stroke="#ffffff" stroke-width="2" />
-          <text x="350" y="155" fill="#f8fafc" font-size="12" font-weight="bold">東京/日本橋</text>
+          <text x="350" y="155" fill="#8c5422" font-size="12" font-weight="bold">東京/日本橋</text>
           <circle cx="300" cy="220" r="8" fill="#7cc7f6" stroke="#ffffff" stroke-width="2" />
-          <text x="310" y="235" fill="#f8fafc" font-size="12" font-weight="bold">品川</text>
+          <text x="310" y="235" fill="#2d6f92" font-size="12" font-weight="bold">品川</text>
           <path d="M 300 220 C 300 270, 200 280, 160 280" fill="none" stroke="#f43f5e" stroke-width="3" stroke-dasharray="5 3" />
           <circle cx="160" cy="280" r="6" fill="#ff8e9f" stroke="#ffffff" stroke-width="2" />
-          <text x="100" y="295" fill="#fda4af" font-size="11">羽田機場 (Hotel JAL City)</text>
+          <text x="100" y="295" fill="#b85a82" font-size="11">羽田機場 (Hotel JAL City)</text>
           <path d="M 100 80 L 30 30" fill="none" stroke="#3b82f6" stroke-width="3" />
           <circle cx="30" cy="30" r="6" fill="#8fd3a8" stroke="#ffffff" stroke-width="2" />
-          <text x="15" y="20" fill="#90cdf4" font-size="11">川越 (35分直達)</text>
+          <text x="15" y="20" fill="#4f8d68" font-size="11">川越 (35分直達)</text>
         </svg>
       </div>
     </div>
@@ -1425,21 +1798,21 @@
         <p>日本面積最大、裝潢最精緻的寶可夢中心。門口迎客的巨型卡比獸與皮卡丘是極佳的拍照點。</p>
         <div class="smart-tip-box">
           <strong>💡 寶可夢咖啡廳 (Pokémon Cafe)：</strong><br>
-          寶可夢咖啡廳就位於 DX 店旁。由於咖啡廳不設現場排隊，**必須 100% 提前預約**。若沒有預約到，可以到旁邊的特別專區購買外帶的造型點心。
+          寶可夢咖啡廳就位於 DX 店旁。由於咖啡廳不設現場排隊，<strong>必須 100% 提前預約</strong>。若沒有預約到，可以到旁邊的特別專區購買外帶的造型點心。
         </div>
       </div>
 
       <div class="card tokyo-akiba-border">
         <h3>👦 鬼滅之刃手辦與卡牌購物貼士</h3>
-        <p>1. **Animate 池袋旗艦店 (二樓)**：設有極大的鬼滅之刃專區，漫畫、鑰匙圈、徽章等周邊最齊全。</p>
-        <p>2. **秋葉原 Radio Kaikan (收音機會館)**：出站即達。整棟樓聚集了數十家手辦二手機及卡牌專賣店（如 AmiAmi、K-BOOKS）。建議在這裡貨比三家，可以淘到許多絕版或特價的鬼滅模型。</p>
+        <p>1. <strong>Animate 池袋旗艦店 (二樓)</strong>：設有極大的鬼滅之刃專區，漫畫、鑰匙圈、徽章等周邊最齊全。</p>
+        <p>2. <strong>秋葉原 Radio Kaikan (收音機會館)</strong>：出站即達。整棟樓聚集了數十家手辦二手機及卡牌專賣店（如 AmiAmi、K-BOOKS）。建議在這裡貨比三家，可以淘到許多絕版或特價的鬼滅模型。</p>
       </div>
 
       <div class="card accent-border">
         <h3>🐈 女兒最愛：Mofusand & Sanrio</h3>
-        <p>1. **東京站一番街 (Tokyo Character Street)**：設有 **Mofusand 專賣店 (mofusand もふにゃん本舗)** 以及大耳狗/三麗鷗專賣店，一站式買齊女兒心儀的角色公仔和文具。</p>
-        <p>2. **原宿 Kiddy Land**：最適合放在淺草之後的下午，角色精品集中，補貨效率高，也比較符合女兒主線。</p>
-        <p>3. **池袋 Sanrio Cafe**：位於陽光城，主打卡通造型的甜品和咖啡拉花，精緻又好玩。</p>
+        <p>1. <strong>東京站一番街 (Tokyo Character Street)</strong>：設有 <strong>mofusand もふもふストア</strong> 以及大耳狗/三麗鷗專賣店，一站式買齊女兒心儀的角色公仔和文具。</p>
+        <p>2. <strong>原宿 Kiddy Land</strong>：最適合放在淺草之後的下午，角色精品集中，補貨效率高，也比較符合女兒主線。</p>
+        <p>3. <strong>池袋 Sanrio Cafe</strong>：位於陽光城，主打卡通造型的甜品和咖啡拉花，精緻又好玩。</p>
       </div>
     </div>
 
@@ -1463,19 +1836,19 @@
 
       <div class="card">
         <h3>🏪 7-Eleven ATM 提取日元現金教學</h3>
-        <p>日本許多地鐵加值機、小吃店和部分神社**只收現金**。日元不夠時可在任何一間 7-Eleven 提款：</p>
+        <p>日本許多地鐵加值機、小吃店和部分神社<strong>只收現金</strong>。日元不夠時可在任何一間 7-Eleven 提款：</p>
         <ol style="margin-left: 20px; font-size: 0.85rem; color: var(--text-muted); padding-top: 8px;">
           <li>將開通了海外功能的香港/加拿大提款卡插入 ATM 機。</li>
           <li>屏幕會自動識別並顯示繁體中文/英文界面。</li>
           <li>選擇「提款」➔ 賬戶類型選「儲蓄賬戶 (Savings)」。</li>
           <li>輸入卡片密碼，並輸入所需提取的日元金額。</li>
-          <li>⚠️ **最重要一步**：當系統問您要以「當地貨幣 (Yen)」還是「本國貨幣 (CAD/HKD)」結算時，**請務必選擇「Yen (日元)」**！若選本國貨幣，會被收取高達 4-8% 的 DCC 匯率差價。</li>
+          <li>⚠️ <strong>最重要一步</strong>：當系統問您要以「當地貨幣 (Yen)」還是「本國貨幣 (CAD/HKD)」結算時，<strong>請務必選擇「Yen (日元)」</strong>！若選本國貨幣，會被收取高達 4-8% 的 DCC 匯率差價。</li>
         </ol>
       </div>
 
       <div class="card">
         <h3>🌡️ 7月東京防暑提醒</h3>
-        <p>東京 7 月白日氣溫常達 34-36°C，且濕度極高。帶孩子旅遊時：</p>
+        <p>東京 7 月平均已偏熱而且濕度高，近年炎夏日子常會衝上 34°C 以上。帶孩子旅遊時：</p>
         <p>✓ 確保每人有一部手持風扇。<br>
         ✓ 白天多安排水族館、商場等室內冷氣充足的景點。<br>
         ✓ 隨身攜帶保溫瓶，在便利店買冰水或運動飲料補充電解質，防範中暑。</p>
@@ -1491,7 +1864,7 @@
     </button>
     <button class="tab-item" onclick="switchTab('handbook', this)">
       <svg viewBox="0 0 24 24"><path d="M18,2A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2H18M17,7H7V9H17V7M17,11H7V13H17V11M13,15H7V17H13V15Z"/></svg>
-      旅行手冊
+      行程詳情
     </button>
     <button class="tab-item" onclick="switchTab('checklists', this)">
       <svg viewBox="0 0 24 24"><path d="M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M10,17L6,13L7.41,11.58L10,14.17L16.59,7.58L18,9L10,17Z"/></svg>
@@ -1522,6 +1895,41 @@
       document.getElementById(tabId).classList.add('active');
       el.classList.add('active');
       window.scrollTo(0, 0);
+    }
+
+    function openTabById(tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+
+      const tabs = document.querySelectorAll('.tab-item');
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      const trigger = document.querySelector(`.tab-item[onclick*="${tabId}"]`);
+      if (trigger) {
+        trigger.classList.add('active');
+      }
+    }
+
+    function goToHandbookDay(dayId) {
+      openTabById('handbook');
+      requestAnimationFrame(() => {
+        const target = document.getElementById(dayId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    function toggleOverviewPanel(panelId, trigger) {
+      const panel = document.getElementById(panelId);
+      if (!panel) {
+        return;
+      }
+      panel.classList.toggle('open');
+      if (trigger) {
+        trigger.classList.toggle('active');
+      }
     }
 
     function toggleDetails(contentId) {
