@@ -9,30 +9,32 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="東京手冊">
-  <meta name="theme-color" content="#818cf8">
+  <meta name="theme-color" content="#f7cfe0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --card-hover: #2d3748;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --bg-color: #fff7f8;
+      --bg-soft: #fff1f5;
+      --card-bg: #ffffff;
+      --card-hover: #fff7fb;
+      --text-main: #432534;
+      --text-muted: #8a6678;
       
       /* Color coding by district */
-      --ikebukuro: #c084fc;      /* Purple */
-      --tokyo-akiba: #fb923c;   /* Orange */
-      --kawagoe: #4ade80;       /* Green */
-      --odaiba: #38bdf8;        /* Blue */
-      --primary: #818cf8;       /* Lavender/Indigo */
+      --ikebukuro: #f48fb1;      /* Sakura pink */
+      --tokyo-akiba: #ffb86b;    /* Apricot */
+      --kawagoe: #8fd3a8;        /* Mint green */
+      --odaiba: #7cc7f6;         /* Sky blue */
+      --primary: #e78ab2;        /* Main sakura pink */
       
-      --accent: #f43f5e;
-      --success: #10b981;
-      --border: #334155;
-      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+      --accent: #ff8e9f;
+      --success: #64b995;
+      --border: #f1cad7;
+      --border-strong: #e8b3c6;
+      --shadow: 0 12px 30px -18px rgba(171, 102, 132, 0.32), 0 8px 18px -16px rgba(171, 102, 132, 0.22);
       --font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
@@ -44,7 +46,10 @@
     }
 
     body {
-      background-color: var(--bg-color);
+      background:
+        radial-gradient(circle at top left, rgba(255, 206, 226, 0.5), transparent 32%),
+        radial-gradient(circle at top right, rgba(180, 228, 255, 0.45), transparent 28%),
+        linear-gradient(180deg, #fff9fb 0%, #fff4f7 46%, #fefcf8 100%);
       color: var(--text-main);
       font-family: var(--font-family);
       line-height: 1.6;
@@ -53,16 +58,18 @@
     }
 
     header {
-      background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+      background:
+        linear-gradient(135deg, rgba(255, 227, 238, 0.96) 0%, rgba(255, 242, 229, 0.95) 48%, rgba(224, 244, 255, 0.95) 100%);
       padding: 35px 20px 25px;
       text-align: center;
-      border-bottom: 2px solid var(--border);
+      border-bottom: 1px solid var(--border-strong);
       position: relative;
     }
 
     .header-badge {
-      background: var(--accent);
-      color: white;
+      background: rgba(255, 255, 255, 0.82);
+      color: #b85a82;
+      border: 1px solid rgba(232, 179, 198, 0.95);
       padding: 4px 10px;
       border-radius: 9999px;
       font-size: 0.7rem;
@@ -78,7 +85,7 @@
       font-weight: 900;
       letter-spacing: -0.5px;
       margin-bottom: 6px;
-      background: linear-gradient(to right, #f472b6, #c084fc, #38bdf8);
+      background: linear-gradient(to right, #d95d8f, #f09bb5, #71bddf);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -98,7 +105,7 @@
     }
 
     .meta-tag {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.8);
       border: 1px solid var(--border);
       padding: 6px;
       border-radius: 8px;
@@ -115,9 +122,9 @@
     }
 
     .action-btn {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border);
+      color: #9a5a76;
       padding: 6px 12px;
       border-radius: 6px;
       font-size: 0.75rem;
@@ -129,7 +136,7 @@
     }
 
     .action-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: #fff7fb;
     }
 
     .container {
@@ -141,16 +148,23 @@
     /* Bottom Navigation Bar */
     .tab-bar {
       display: flex;
-      justify-content: space-around;
-      background-color: var(--card-bg);
+      justify-content: flex-start;
+      gap: 4px;
+      background: rgba(255, 249, 251, 0.96);
       border-top: 1px solid var(--border);
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 6px 0;
-      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+      padding: 6px 8px;
+      box-shadow: 0 -10px 24px rgba(195, 133, 156, 0.18);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tab-bar::-webkit-scrollbar {
+      display: none;
     }
 
     .tab-item {
@@ -159,11 +173,12 @@
       align-items: center;
       background: none;
       border: none;
-      color: var(--text-muted);
+      color: #a38091;
       font-size: 0.65rem;
       font-family: var(--font-family);
       cursor: pointer;
-      width: 20%;
+      min-width: 82px;
+      flex: 0 0 auto;
       transition: color 0.2s;
       outline: none;
       font-weight: 600;
@@ -215,6 +230,116 @@
       justify-content: space-between;
     }
 
+    .summary-note {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    .overview-card {
+      background: linear-gradient(180deg, rgba(255, 240, 246, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .overview-card.primary-day {
+      border-left: 4px solid var(--primary);
+    }
+
+    .overview-kicker {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .overview-kicker span {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .overview-kicker strong {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .overview-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .overview-meta {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      margin-bottom: 12px;
+    }
+
+    .day-flow {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .day-step {
+      background: linear-gradient(180deg, #fffafd 0%, #fff4f8 100%);
+      border: 1px solid #f7d7e3;
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
+    .day-step-label {
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .day-step strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 0.92rem;
+    }
+
+    .day-step p {
+      color: var(--text-muted);
+      font-size: 0.83rem;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      background: #fff0f6;
+      border: 1px solid #f4ccd9;
+      border-radius: 9999px;
+      padding: 5px 9px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .overview-footer {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      border-top: 1px solid #f5d8e2;
+      padding-top: 10px;
+    }
+
     /* Spot Cards */
     .spot-card {
       background-color: var(--card-bg);
@@ -235,7 +360,7 @@
       width: 100%;
       height: 180px;
       position: relative;
-      background-color: #0b0f19;
+      background-color: #f8e7ee;
       overflow: hidden;
     }
 
@@ -260,13 +385,13 @@
       border-radius: 6px;
       font-size: 0.7rem;
       font-weight: 700;
-      color: white;
+      color: #5b3140;
     }
 
-    .badge-musteat { background-color: var(--accent); }
-    .badge-mustbuy { background-color: #eab308; color: #000; }
-    .badge-mustgo { background-color: var(--primary); }
-    .badge-alt { background-color: #64748b; }
+    .badge-musteat { background-color: #ffd1da; }
+    .badge-mustbuy { background-color: #ffe49a; color: #755300; }
+    .badge-mustgo { background-color: #f7c5d7; }
+    .badge-alt { background-color: #dfeaf2; color: #506778; }
 
     .spot-info-container {
       padding: 16px;
@@ -297,7 +422,7 @@
       font-size: 0.8rem;
       color: var(--text-muted);
       margin-bottom: 12px;
-      background: rgba(0, 0, 0, 0.15);
+      background: #fff5f8;
       padding: 6px 10px;
       border-radius: 6px;
     }
@@ -310,7 +435,7 @@
 
     .spot-description {
       font-size: 0.9rem;
-      color: #cbd5e1;
+      color: #6e5360;
       margin-bottom: 15px;
     }
 
@@ -319,13 +444,13 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 0.8rem;
-      background: rgba(15, 23, 42, 0.3);
+      background: #fff8fb;
       border-radius: 8px;
       overflow: hidden;
     }
 
     .spot-details-table tr {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid #f2dbe3;
     }
 
     .spot-details-table tr:last-child {
@@ -347,8 +472,8 @@
     }
 
     .smart-tip-box {
-      background: rgba(167, 139, 250, 0.08);
-      border: 1px dashed rgba(167, 139, 250, 0.3);
+      background: #fff3f8;
+      border: 1px dashed #efbfd1;
       border-radius: 8px;
       padding: 10px 12px;
       margin-top: 12px;
@@ -356,12 +481,12 @@
     }
 
     .smart-tip-box strong {
-      color: #c084fc;
+      color: #cb5d8e;
     }
 
     /* Expandable Accordions */
     .details-toggle {
-      background: rgba(255, 255, 255, 0.03);
+      background: #fff8fb;
       border: 1px solid var(--border);
       color: var(--text-main);
       padding: 10px 15px;
@@ -398,7 +523,7 @@
       border: 1px solid var(--border);
       border-top: none;
       border-radius: 0 0 8px 8px;
-      background-color: rgba(15, 23, 42, 0.3);
+      background-color: #fff9fc;
       font-size: 0.85rem;
       color: var(--text-muted);
     }
@@ -413,7 +538,7 @@
       align-items: flex-start;
       gap: 12px;
       padding: 12px;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255, 255, 255, 0.78);
       border: 1px solid var(--border);
       border-radius: 8px;
       margin-bottom: 8px;
@@ -422,7 +547,7 @@
     }
 
     .checklist-item:hover {
-      background: rgba(255, 255, 255, 0.04);
+      background: #fff6fa;
     }
 
     .checklist-item input[type="checkbox"] {
@@ -441,7 +566,7 @@
       position: relative;
       margin-top: 2px;
       transition: background-color 0.2s, border-color 0.2s;
-      background-color: #0f172a;
+      background-color: #fffdfd;
     }
 
     .checklist-item input[type="checkbox"]:checked ~ .checkbox-custom {
@@ -487,24 +612,24 @@
     }
 
     .alert {
-      background: rgba(244, 63, 94, 0.1);
-      border: 1px solid rgba(244, 63, 94, 0.2);
+      background: #fff0f2;
+      border: 1px solid #f7c6d1;
       border-radius: 10px;
       padding: 12px;
       margin-bottom: 15px;
-      color: #fda4af;
+      color: #b35473;
       font-size: 0.85rem;
     }
 
     .alert.tip {
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.2);
-      color: #a7f3d0;
+      background: #eef9f3;
+      border: 1px solid #cfeedd;
+      color: #4a8a67;
     }
 
     /* Simplified Maps */
     .map-box {
-      background-color: #0b0f19;
+      background-color: #fff8fb;
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 12px;
@@ -595,8 +720,182 @@
   <div class="container">
 
     <!-- ==================== TAB 1: ITINERARY ==================== -->
-    <div id="itinerary" class="tab-content active">
+    <div id="overview" class="tab-content active">
+      <h2>🗓️ 行程總覽</h2>
+      <p class="summary-note">先看這裡掌握每天主線。景點故事、備選安排、購物和交通細節都放在「旅行手冊」內，避免主行程被淹沒。</p>
+
+      <div class="overview-card primary-day">
+        <div class="overview-kicker">
+          <span>Day 1</span>
+          <strong>7月3日 (五)</strong>
+        </div>
+        <div class="overview-title">羽田晚到日</div>
+        <div class="overview-meta">主題：最低移動量，直接休息。</div>
+        <div class="day-flow">
+          <div class="day-step">
+            <div class="day-step-label">Arrival</div>
+            <strong>抵達羽田 T3 + 辦入境</strong>
+            <p>視通關和取行李情況，預留 45–90 分鐘。</p>
+          </div>
+          <div class="day-step">
+            <div class="day-step-label">Night</div>
+            <strong>酒店接駁車到 Haneda 酒店</strong>
+            <p>不再加景點，將這天當作恢復日。</p>
+          </div>
+        </div>
+        <div class="pill-list">
+          <span class="pill">Welcome Suica</span>
+          <span class="pill">Child Suica</span>
+          <span class="pill">Hotel JAL City</span>
+        </div>
+      </div>
+
+      <div class="overview-card primary-day">
+        <div class="overview-kicker">
+          <span>Day 2</span>
+          <strong>7月4日 (六)</strong>
+        </div>
+        <div class="overview-title">池袋輕鬆動漫日</div>
+        <div class="overview-meta">主題：搬酒店後不要再塞重景點，先用低摩擦路線進入東京節奏。</div>
+        <div class="day-flow">
+          <div class="day-step">
+            <div class="day-step-label">Morning</div>
+            <strong>Haneda 酒店早餐後直接搭 Uber / Taxi 到池袋</strong>
+            <p>3件大行李下，體力比車費更重要。</p>
+          </div>
+          <div class="day-step">
+            <div class="day-step-label">Midday</div>
+            <strong>寄放行李 → Animate 池袋旗艦店 → Sanrio Cafe 午餐</strong>
+            <p>把第一個完整白天做成兒子和女兒都能各有亮點的簡單路線。</p>
+          </div>
+          <div class="day-step">
+            <div class="day-step-label">Afternoon</div>
+            <strong>Sunshine City、扭蛋、角色商店</strong>
+            <p>晚上回酒店泡溫泉，不把這天做成衝刺日。</p>
+          </div>
+        </div>
+        <div class="pill-list">
+          <span class="pill">Animate Ikebukuro</span>
+          <span class="pill">Sunshine City</span>
+          <span class="pill">Sanrio Cafe</span>
+        </div>
+        <div class="overview-footer">如果後面文化日想改成川越，先保留體力比第一天硬上更合理。</div>
+      </div>
+
+      <div class="overview-card primary-day">
+        <div class="overview-kicker">
+          <span>Day 3</span>
+          <strong>7月5日 (日)</strong>
+        </div>
+        <div class="overview-title">彌撒 + Pokémon DX + 秋葉原</div>
+        <div class="overview-meta">主題：Sunday 的固定宗教安排，加上最對孩子胃口的動漫線。</div>
+        <div class="day-flow">
+          <div class="day-step">
+            <div class="day-step-label">Morning</div>
+            <strong>參與主日彌撒</strong>
+            <p>先完成固定安排，再往東京站移動。</p>
+          </div>
+          <div class="day-step">
+            <div class="day-step-label">Midday</div>
+            <strong>東京站午餐 + Pokémon Center TOKYO DX + Character Street</strong>
+            <p>補足池袋 Mega Center 關閉後的 Pokémon 主場。</p>
+          </div>
+          <div class="day-step">
+            <div class="day-step-label">Afternoon</div>
+            <strong>秋葉原集中找鬼滅、模型、二手收藏</strong>
+            <p>把 Nintendo 時間換成更適合這一家人的動漫內容。</p>
+          </div>
+        </div>
+        <div class="pill-list">
+          <span class="pill">Mass</span>
+          <span class="pill">Pokémon DX</span>
+          <span class="pill">Character Street</span>
+          <span class="pill">Akihabara</span>
+        </div>
+      </div>
+
+      <div class="overview-card primary-day">
+        <div class="overview-kicker">
+          <span>Day 4</span>
+          <strong>7月6日 (一)</strong>
+        </div>
+        <div class="overview-title">淺草 + 原宿可愛購物日</div>
+        <div class="overview-meta">主題：把缺漏的淺草正式放回主線，做成鬼滅氣氛 + 女兒友善購物的文化日。</div>
+        <div class="day-flow">
+          <div class="day-step">
+            <div class="day-step-label">Morning</div>
+            <strong>雷門、仲見世、淺草寺、小食與拍照</strong>
+            <p>主打江戶感和鬼滅氛圍，中午前後離開避熱。</p>
+          </div>
+          <div class="day-step">
+            <div class="day-step-label">Afternoon</div>
+            <strong>原宿 Kiddy Land + Mofusand / Sanrio 角色購物</strong>
+            <p>有體力再加表參道，不強行塞滿。</p>
+          </div>
+          <div class="day-step">
+            <div class="day-step-label">Evening</div>
+            <strong>回池袋自由補逛</strong>
+            <p>可重返 Sunshine City 或在酒店附近簡單晚餐。</p>
+          </div>
+        </div>
+        <div class="pill-list">
+          <span class="pill">Kaminarimon</span>
+          <span class="pill">Senso-ji</span>
+          <span class="pill">Harajuku</span>
+          <span class="pill">Kiddy Land</span>
+        </div>
+        <div class="overview-footer">川越沒有被刪掉，改放到手冊裡作為文化日替代方案，避免主線同時出現兩個版本。</div>
+      </div>
+
+      <div class="overview-card primary-day">
+        <div class="overview-kicker">
+          <span>Day 5</span>
+          <strong>7月7日 (二)</strong>
+        </div>
+        <div class="overview-title">水族館 + 台場夜景</div>
+        <div class="overview-meta">主題：搬回羽田前的室內降溫日，下午到夜晚再轉去海濱區。</div>
+        <div class="day-flow">
+          <div class="day-step">
+            <div class="day-step-label">Morning</div>
+            <strong>池袋退房，往羽田酒店方向移動並寄放行李</strong>
+            <p>先把大行李問題處理完，再開始景點。</p>
+          </div>
+          <div class="day-step">
+            <div class="day-step-label">Midday</div>
+            <strong>Maxell Aqua Park Shinagawa</strong>
+            <p>全室內，適合 7 月熱天和孩子節奏。</p>
+          </div>
+          <div class="day-step">
+            <div class="day-step-label">Afternoon To Night</div>
+            <strong>DiverCity 鋼彈 + Odaiba 海濱夜景</strong>
+            <p>把最後一個完整晚上留給輕鬆散步和打卡。</p>
+          </div>
+        </div>
+        <div class="pill-list">
+          <span class="pill">Aqua Park</span>
+          <span class="pill">Unicorn Gundam</span>
+          <span class="pill">Rainbow Bridge View</span>
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <div class="overview-kicker">
+          <span>Day 6</span>
+          <strong>7月8日 (三)</strong>
+        </div>
+        <div class="overview-title">補貨 + 回港</div>
+        <div class="overview-meta">主題：不要再拉遠線，留給最後採購和機場緩衝。</div>
+        <div class="pill-list">
+          <span class="pill">Nearby shopping only</span>
+          <span class="pill">Airport buffer</span>
+          <span class="pill">CX549</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="handbook" class="tab-content">
       <h2>🗓️ 每日詳細行程</h2>
+      <p class="summary-note">這裡保留旅行手冊式的背景資料、貼士和景點解說。若只想快速看主流程，先看「行程總覽」。</p>
       
       <!-- Day 1 -->
       <h3>7月3日 (五) ➔ 抵達東京·羽田入住</h3>
@@ -618,7 +917,7 @@
 
         <!-- Hotel Card -->
         <div class="spot-card" style="border-left: 3px solid var(--primary);">
-          <div class="spot-image-container" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;">
+          <div class="spot-image-container" style="background: linear-gradient(135deg, #fff0f4 0%, #ffe9f0 58%, #e9f7ff 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;">
             <div style="font-size:2.5rem;">🏨</div>
             <div style="color:var(--text-muted); font-size:0.85rem; text-align:center;">Hotel JAL City<br>Haneda Tokyo<br>West Wing</div>
           </div>
@@ -668,10 +967,10 @@
             <div class="spot-badges">
               <span class="badge badge-mustgo">必到聖地</span>
             </div>
-            <div style="background: linear-gradient(135deg, #2e1065 0%, #1e1b4b 50%, #0f172a 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:6px;">
+            <div style="background: linear-gradient(135deg, #ffe8f1 0%, #ffd8e7 50%, #eef8ff 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:6px;">
               <div style="font-size:2.2rem;">🎌</div>
-              <div style="color:#c084fc; font-size:0.85rem; font-weight:700; text-align:center; line-height:1.3;">Animate<br>池袋旗艦店</div>
-              <div style="color:#94a3b8; font-size:0.7rem;">B2F～10F</div>
+              <div style="color:#cc5b89; font-size:0.85rem; font-weight:700; text-align:center; line-height:1.3;">Animate<br>池袋旗艦店</div>
+              <div style="color:#9d7788; font-size:0.7rem;">B2F～10F</div>
             </div>
           </div>
           <div class="spot-info-container">
@@ -831,43 +1130,87 @@
       </div>
 
       <!-- Day 4 -->
-      <h3>7月6日 (一) ➔ 川越小江戶古街日</h3>
+      <h3>7月6日 (一) ➔ 淺草 + 原宿可愛購物日</h3>
       <div class="timeline">
-        <!-- Spot 5: Kawagoe Clock Tower -->
-        <div class="spot-card kawagoe-border">
+        <div class="spot-card tokyo-akiba-border">
           <div class="spot-image-container">
             <div class="spot-badges">
-              <span class="badge badge-mustgo">必遊景點</span>
+              <span class="badge badge-mustgo">文化主線</span>
             </div>
-            <img src="assets/kawagoe_clock_tower.png" class="spot-img" alt="川越時之鐘">
+            <div style="background: linear-gradient(135deg, #fff1e7 0%, #ffe3d2 45%, #fff6fa 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:8px;">
+              <div style="font-size:2.3rem;">🏮</div>
+              <div style="color:#d1774d; font-size:0.9rem; font-weight:800; text-align:center;">Asakusa<br>淺草寺 · 雷門 · 仲見世</div>
+            </div>
           </div>
           <div class="spot-info-container">
             <div class="spot-title-row">
-              <div class="spot-title">川越老街與時之鐘</div>
+              <div class="spot-title">淺草文化散步線</div>
               <div class="spot-rating">★★★★★</div>
             </div>
             <div class="spot-quick-stats">
-              <span class="stat-item">⏱️ 建議：半日遊 (4小時)</span>
-              <span class="stat-item">🚆 交通：池袋乘東武東上線直達川越 (35分)</span>
+              <span class="stat-item">⏱️ 建議：2.5–3小時</span>
+              <span class="stat-item">🚆 交通：池袋出發約 30–35 分鐘</span>
             </div>
-            <p class="spot-description">被稱為「小江戶」的歷史街區。保留了大量日本江戶時代的黑色木造倉庫建築，地標「時之鐘」依然每日鳴鐘。非常適合全家人換上輕便的**浴衣 (Yukata)** 散步拍照。</p>
+            <p class="spot-description">把缺漏的淺草正式放進主線。雷門、仲見世、淺草寺一段最能補足「經典東京」和「鬼滅氛圍」的感覺，也比把整天都放在單一購物區更有層次。</p>
+            <table class="spot-details-table">
+              <tr>
+                <td class="label-col">上午動線</td>
+                <td class="val-col">雷門 → 仲見世商店街 → 淺草寺 → 小食休息 → 視體力離開</td>
+              </tr>
+              <tr>
+                <td class="label-col">體感策略</td>
+                <td class="val-col">7 月正午前後很熱，建議中午左右轉往原宿或室內商場，避免在淺草曝曬過久。</td>
+              </tr>
+            </table>
             <div class="smart-tip-box">
-              <strong>🎐 7月限定！川越冰川神社「緣結風鈴祭」：</strong><br>
-              每年 7 月初開展，神社內會懸掛超過 2,000 個五彩繽紛的手工玻璃風鈴。微風吹過鈴聲清脆，晚上還會有點燈儀式，宛如動漫鬼滅之刃中的夏祭場景，千萬不要錯過！
+              <strong>💡 鬼滅氛圍的用法：</strong><br>
+              可以把淺草寫成「有鬼滅淺草篇氣氛的場景感」，但不要寫成作品的實際取景地。這樣既保留故事感，也不會讓行程資訊失真。
             </div>
           </div>
         </div>
 
-        <!-- Alternatives for Day 4 -->
+        <div class="spot-card ikebukuro-border">
+          <div class="spot-image-container">
+            <div class="spot-badges">
+              <span class="badge badge-mustgo">女兒重點</span>
+            </div>
+            <div style="background: linear-gradient(135deg, #eef9f1 0%, #e2f5ff 55%, #fff4f8 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:8px;">
+              <div style="font-size:2.3rem;">🛍️</div>
+              <div style="color:#4f8caf; font-size:0.9rem; font-weight:800; text-align:center;">Harajuku<br>Kiddy Land · Cute Shopping</div>
+            </div>
+          </div>
+          <div class="spot-info-container">
+            <div class="spot-title-row">
+              <div class="spot-title">原宿角色購物線</div>
+              <div class="spot-rating">★★★★☆</div>
+            </div>
+            <div class="spot-quick-stats">
+              <span class="stat-item">⏱️ 建議：2–3小時</span>
+              <span class="stat-item">🎀 主打：Mofusand / Sanrio / 可愛精品</span>
+            </div>
+            <p class="spot-description">下午接原宿，讓文化日不只停在拍照，還能補上女兒最喜歡的角色購物。Kiddy Land 是主點，有體力再加表參道一段即可，不需要把這區做成暴走逛街。</p>
+            <table class="spot-details-table">
+              <tr>
+                <td class="label-col">主力店</td>
+                <td class="val-col">Kiddy Land、角色快閃店、表參道沿線精品店</td>
+              </tr>
+              <tr>
+                <td class="label-col">節奏建議</td>
+                <td class="val-col">先完成 Kiddy Land，再視孩子精神決定是否續逛，傍晚可直接回池袋。</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
         <button class="details-toggle" onclick="toggleDetails('d4-alts')">
-          <span>💚 同區順路遊及美食備選 (川越區)</span>
+          <span>💚 文化日替代方案與順路補充</span>
           <svg viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
         </button>
         <div id="d4-alts" class="details-content">
           <div class="details-inner">
-            <p style="margin-bottom: 8px;"><strong>1. 喜多院 (Kitain Temple) ★★★★☆</strong><br>保留了江戶城部分遺跡的古老寺廟，庭院內有著名的五百羅漢雕塑。春天櫻花和秋天楓葉很有名，夏日則十分幽靜。</p>
-            <p style="margin-bottom: 8px;"><strong>2. 川越熊野神社 (Kumano Shrine) ★★★★☆</strong><br>以「開運、洗錢」聞名的神社。院內設有一條碎石健康步道（赤腳走），還有獨特的八咫烏神籤，孩子們會覺得很好玩。</p>
-            <p style="margin-bottom: 0;"><strong>3. 小川菊鰻魚飯 (Ogakiku) ★★★★★</strong><br>川越擁有二百年歷史的鰻魚飯老店，用古法炭火慢烤，入口即化。因為太受歡迎，建議一到川越就先去拿號碼牌。</p>
+            <p style="margin-bottom: 8px;"><strong>1. 川越替代版 ★★★★★</strong><br>如果更想要老街、和服和番薯小食，川越仍然是很好的文化日替代方案。它現在保留在手冊中作為「可替換行程」，避免主線同時出現兩個版本。</p>
+            <p style="margin-bottom: 8px;"><strong>2. 淺草寺附近和服拍照 ★★★★☆</strong><br>如果已經在川越租過浴衣，淺草這天不必再租；輕裝拍照會更舒服，尤其 7 月高溫下更實際。</p>
+            <p style="margin-bottom: 0;"><strong>3. 回池袋補逛 Sunshine City ★★★★☆</strong><br>這天傍晚回池袋後，可把 Day 2 沒逛完的角色商店和扭蛋補完，保持整趟旅程的節奏鬆一點。</p>
           </div>
         </div>
       </div>
@@ -1055,19 +1398,19 @@
         <svg class="map-svg" viewBox="0 0 400 300">
           <ellipse cx="200" cy="150" rx="140" ry="110" fill="none" stroke="#475569" stroke-width="6" />
           <ellipse cx="200" cy="150" rx="140" ry="110" fill="none" stroke="#22c55e" stroke-width="4" stroke-dasharray="10 5" />
-          <circle cx="100" cy="80" r="8" fill="#a78bfa" stroke="#0f172a" stroke-width="2" />
+          <circle cx="100" cy="80" r="8" fill="#f09bb5" stroke="#ffffff" stroke-width="2" />
           <text x="70" y="65" fill="#f8fafc" font-size="12" font-weight="bold">池袋 (Super Hotel)</text>
-          <circle cx="300" cy="80" r="6" fill="#f8fafc" stroke="#0f172a" stroke-width="2" />
+          <circle cx="300" cy="80" r="6" fill="#ffffff" stroke="#ffffff" stroke-width="2" />
           <text x="310" y="80" fill="#94a3b8" font-size="11">上野</text>
-          <circle cx="340" cy="150" r="8" fill="#fb923c" stroke="#0f172a" stroke-width="2" />
+          <circle cx="340" cy="150" r="8" fill="#ffb86b" stroke="#ffffff" stroke-width="2" />
           <text x="350" y="155" fill="#f8fafc" font-size="12" font-weight="bold">東京/日本橋</text>
-          <circle cx="300" cy="220" r="8" fill="#38bdf8" stroke="#0f172a" stroke-width="2" />
+          <circle cx="300" cy="220" r="8" fill="#7cc7f6" stroke="#ffffff" stroke-width="2" />
           <text x="310" y="235" fill="#f8fafc" font-size="12" font-weight="bold">品川</text>
           <path d="M 300 220 C 300 270, 200 280, 160 280" fill="none" stroke="#f43f5e" stroke-width="3" stroke-dasharray="5 3" />
-          <circle cx="160" cy="280" r="6" fill="#f43f5e" stroke="#0f172a" stroke-width="2" />
+          <circle cx="160" cy="280" r="6" fill="#ff8e9f" stroke="#ffffff" stroke-width="2" />
           <text x="100" y="295" fill="#fda4af" font-size="11">羽田機場 (Hotel JAL City)</text>
           <path d="M 100 80 L 30 30" fill="none" stroke="#3b82f6" stroke-width="3" />
-          <circle cx="30" cy="30" r="6" fill="#3b82f6" stroke="#0f172a" stroke-width="2" />
+          <circle cx="30" cy="30" r="6" fill="#8fd3a8" stroke="#ffffff" stroke-width="2" />
           <text x="15" y="20" fill="#90cdf4" font-size="11">川越 (35分直達)</text>
         </svg>
       </div>
@@ -1095,7 +1438,8 @@
       <div class="card accent-border">
         <h3>🐈 女兒最愛：Mofusand & Sanrio</h3>
         <p>1. **東京站一番街 (Tokyo Character Street)**：設有 **Mofusand 專賣店 (mofusand もふにゃん本舗)** 以及大耳狗/三麗鷗專賣店，一站式買齊女兒心儀的角色公仔和文具。</p>
-        <p>2. **池袋 Sanrio Cafe**：位於陽光城，主打卡通造型的甜品和咖啡拉花，精緻又好玩。</p>
+        <p>2. **原宿 Kiddy Land**：最適合放在淺草之後的下午，角色精品集中，補貨效率高，也比較符合女兒主線。</p>
+        <p>3. **池袋 Sanrio Cafe**：位於陽光城，主打卡通造型的甜品和咖啡拉花，精緻又好玩。</p>
       </div>
     </div>
 
@@ -1141,9 +1485,13 @@
   </div>
 
   <nav class="tab-bar">
-    <button class="tab-item active" onclick="switchTab('itinerary', this)">
+    <button class="tab-item active" onclick="switchTab('overview', this)">
       <svg viewBox="0 0 24 24"><path d="M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z"/></svg>
-      每日行程
+      行程總覽
+    </button>
+    <button class="tab-item" onclick="switchTab('handbook', this)">
+      <svg viewBox="0 0 24 24"><path d="M18,2A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2H18M17,7H7V9H17V7M17,11H7V13H17V11M13,15H7V17H13V15Z"/></svg>
+      旅行手冊
     </button>
     <button class="tab-item" onclick="switchTab('checklists', this)">
       <svg viewBox="0 0 24 24"><path d="M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M10,17L6,13L7.41,11.58L10,14.17L16.59,7.58L18,9L10,17Z"/></svg>
