@@ -732,6 +732,10 @@
       border-radius: 16px;
       background: rgba(255, 255, 255, 0.8);
       box-shadow: var(--shadow);
+      position: sticky;
+      top: 12px;
+      z-index: 20;
+      backdrop-filter: blur(10px);
     }
 
     .handbook-day-link {
@@ -750,6 +754,13 @@
       white-space: nowrap;
     }
 
+    .handbook-day-link.active {
+      background: #ffe7f1;
+      border-color: #e7a9c2;
+      color: #b14f79;
+      box-shadow: inset 0 0 0 1px rgba(231, 138, 178, 0.18);
+    }
+
     .handbook-section {
       margin-bottom: 26px;
       padding: 18px;
@@ -761,7 +772,7 @@
 
     .handbook-section h3 {
       margin-top: 0;
-      scroll-margin-top: 78px;
+      scroll-margin-top: 96px;
     }
 
     .timeline {
@@ -775,117 +786,6 @@
 
     .timeline-title {
       font-size: 1rem;
-    }
-
-    .mobile-handbook-fab {
-      position: fixed;
-      right: 16px;
-      bottom: 96px;
-      z-index: 1100;
-      display: none;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid #efbfd1;
-      border-radius: 9999px;
-      background: rgba(255, 247, 251, 0.96);
-      color: #b85a82;
-      padding: 11px 14px;
-      font-size: 0.8rem;
-      font-weight: 800;
-      box-shadow: 0 18px 30px -20px rgba(171, 102, 132, 0.55);
-      backdrop-filter: blur(12px);
-      cursor: pointer;
-    }
-
-    .mobile-handbook-fab svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
-
-    .mobile-handbook-fab.visible {
-      display: inline-flex;
-    }
-
-    .mobile-day-sheet {
-      position: fixed;
-      inset: 0;
-      z-index: 1150;
-      display: none;
-      align-items: flex-end;
-      justify-content: center;
-      background: rgba(67, 37, 52, 0.24);
-      padding: 16px 16px 92px;
-    }
-
-    .mobile-day-sheet.open {
-      display: flex;
-    }
-
-    .mobile-day-sheet-panel {
-      width: min(100%, 460px);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      background: linear-gradient(180deg, rgba(255, 250, 252, 0.98) 0%, rgba(255, 255, 255, 0.99) 100%);
-      box-shadow: 0 28px 56px -28px rgba(171, 102, 132, 0.45);
-      overflow: hidden;
-    }
-
-    .mobile-day-sheet-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 16px 12px;
-      border-bottom: 1px solid #f3dce4;
-    }
-
-    .mobile-day-sheet-header strong {
-      font-size: 0.96rem;
-      color: var(--text-main);
-    }
-
-    .mobile-day-sheet-close {
-      appearance: none;
-      border: 1px solid #efc8d6;
-      background: #fff7fb;
-      color: #9a5a76;
-      border-radius: 9999px;
-      padding: 7px 10px;
-      font-size: 0.75rem;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .mobile-day-sheet-links {
-      display: grid;
-      gap: 10px;
-      padding: 14px 16px 16px;
-    }
-
-    .mobile-day-link {
-      display: block;
-      border: 1px solid #f1d6df;
-      border-radius: 14px;
-      background: #fff8fb;
-      padding: 12px 14px;
-      color: var(--text-main);
-      text-decoration: none;
-    }
-
-    .mobile-day-link strong {
-      display: block;
-      color: #b85a82;
-      font-size: 0.82rem;
-      margin-bottom: 2px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .mobile-day-link span {
-      display: block;
-      color: var(--text-muted);
-      font-size: 0.82rem;
     }
 
     .handbook-day-brief h4 {
@@ -1092,13 +992,6 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .handbook-day-nav {
-        position: sticky;
-        top: 12px;
-        z-index: 20;
-        backdrop-filter: blur(10px);
-      }
-
       .brief-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -1140,10 +1033,6 @@
         font-size: 0.72rem;
       }
 
-      .mobile-handbook-fab,
-      .mobile-day-sheet {
-        display: none !important;
-      }
     }
 
     @media print {
@@ -1160,7 +1049,7 @@
         --border: #cbd5e1;
         --shadow: none;
       }
-      .tab-bar, .action-btn-container, .details-toggle, .mobile-handbook-fab, .mobile-day-sheet {
+      .tab-bar, .action-btn-container, .details-toggle {
         display: none !important;
       }
       .handbook-day-nav {
@@ -1201,6 +1090,7 @@
         text-decoration: none !important;
       }
     }
+
   </style>
 </head>
 <body>
@@ -2271,46 +2161,6 @@
 
   </div>
 
-  <button id="mobileHandbookFab" class="mobile-handbook-fab" type="button" onclick="toggleMobileDaySheet(true)" aria-label="打開手冊日程導航">
-    <svg viewBox="0 0 24 24"><path d="M5,4H19A2,2 0 0,1 21,6V18A2,2 0 0,1 19,20H5A2,2 0 0,1 3,18V6A2,2 0 0,1 5,4M7,8V10H17V8H7M7,12V14H14V12H7Z"/></svg>
-    Day Jump
-  </button>
-
-  <div id="mobileDaySheet" class="mobile-day-sheet" onclick="handleMobileSheetBackdrop(event)">
-    <div class="mobile-day-sheet-panel">
-      <div class="mobile-day-sheet-header">
-        <strong>手冊日程導航</strong>
-        <button class="mobile-day-sheet-close" type="button" onclick="toggleMobileDaySheet(false)">關閉</button>
-      </div>
-      <div class="mobile-day-sheet-links">
-        <a class="mobile-day-link" href="#day1-handbook" onclick="jumpToHandbookDayFromSheet(event, 'day1-handbook')">
-          <strong>Day 1</strong>
-          <span>抵達羽田</span>
-        </a>
-        <a class="mobile-day-link" href="#day2-handbook" onclick="jumpToHandbookDayFromSheet(event, 'day2-handbook')">
-          <strong>Day 2</strong>
-          <span>池袋動漫日</span>
-        </a>
-        <a class="mobile-day-link" href="#day3-handbook" onclick="jumpToHandbookDayFromSheet(event, 'day3-handbook')">
-          <strong>Day 3</strong>
-          <span>彌撒 / Pokémon / 秋葉原</span>
-        </a>
-        <a class="mobile-day-link" href="#day4-handbook" onclick="jumpToHandbookDayFromSheet(event, 'day4-handbook')">
-          <strong>Day 4</strong>
-          <span>淺草 / 原宿</span>
-        </a>
-        <a class="mobile-day-link" href="#day5-handbook" onclick="jumpToHandbookDayFromSheet(event, 'day5-handbook')">
-          <strong>Day 5</strong>
-          <span>水族館 / 台場</span>
-        </a>
-        <a class="mobile-day-link" href="#day6-handbook" onclick="jumpToHandbookDayFromSheet(event, 'day6-handbook')">
-          <strong>Day 6</strong>
-          <span>回程</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
   <nav class="tab-bar">
     <button class="tab-item active" onclick="switchTab('overview', this)">
       <svg viewBox="0 0 24 24"><path d="M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z"/></svg>
@@ -2339,41 +2189,47 @@
   </nav>
 
   <script>
-    function updateHandbookMobileFab() {
-      const fab = document.getElementById('mobileHandbookFab');
-      if (!fab) {
-        return;
-      }
+    function setActiveHandbookDay(dayId) {
+      document.querySelectorAll('.handbook-day-link').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${dayId}`);
+      });
+    }
 
-      const isMobileWidth = window.innerWidth < 820;
+    function updateActiveHandbookDay() {
       const handbookTab = document.getElementById('handbook');
-      const isHandbookActive = handbookTab && handbookTab.classList.contains('active');
-      fab.classList.toggle('visible', isMobileWidth && isHandbookActive);
-    }
-
-    function toggleMobileDaySheet(forceOpen) {
-      const sheet = document.getElementById('mobileDaySheet');
-      if (!sheet) {
+      if (!handbookTab || !handbookTab.classList.contains('active')) {
         return;
       }
 
-      const shouldOpen = typeof forceOpen === 'boolean'
-        ? forceOpen
-        : !sheet.classList.contains('open');
+      const dayIds = [
+        'day1-handbook',
+        'day2-handbook',
+        'day3-handbook',
+        'day4-handbook',
+        'day5-handbook',
+        'day6-handbook',
+      ];
 
-      sheet.classList.toggle('open', shouldOpen);
-      document.body.style.overflow = shouldOpen ? 'hidden' : '';
+      let activeDayId = dayIds[0];
+      const activationOffset = 140;
+
+      dayIds.forEach(dayId => {
+        const section = document.getElementById(dayId);
+        if (!section) {
+          return;
+        }
+
+        const top = section.getBoundingClientRect().top;
+        if (top <= activationOffset) {
+          activeDayId = dayId;
+        }
+      });
+
+      setActiveHandbookDay(activeDayId);
     }
 
-    function handleMobileSheetBackdrop(event) {
-      if (event.target.id === 'mobileDaySheet') {
-        toggleMobileDaySheet(false);
-      }
-    }
-
-    function jumpToHandbookDayFromSheet(event, dayId) {
+    function jumpToHandbookDay(event, dayId) {
       event.preventDefault();
-      toggleMobileDaySheet(false);
       goToHandbookDay(dayId);
     }
 
@@ -2386,9 +2242,8 @@
 
       document.getElementById(tabId).classList.add('active');
       el.classList.add('active');
-      toggleMobileDaySheet(false);
-      updateHandbookMobileFab();
       window.scrollTo(0, 0);
+      requestAnimationFrame(updateActiveHandbookDay);
     }
 
     function openTabById(tabId) {
@@ -2403,12 +2258,12 @@
       if (trigger) {
         trigger.classList.add('active');
       }
-      updateHandbookMobileFab();
+      requestAnimationFrame(updateActiveHandbookDay);
     }
 
     function goToHandbookDay(dayId) {
       openTabById('handbook');
-      updateHandbookMobileFab();
+      setActiveHandbookDay(dayId);
       requestAnimationFrame(() => {
         const target = document.getElementById(dayId);
         if (target) {
@@ -2467,15 +2322,14 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       initChecklists();
-      updateHandbookMobileFab();
+      updateActiveHandbookDay();
     });
 
     window.addEventListener('resize', () => {
-      updateHandbookMobileFab();
-      if (window.innerWidth >= 820) {
-        toggleMobileDaySheet(false);
-      }
+      updateActiveHandbookDay();
     });
+
+    window.addEventListener('scroll', updateActiveHandbookDay, { passive: true });
 
     // Register Service Worker for offline support
     if ('serviceWorker' in navigator) {
